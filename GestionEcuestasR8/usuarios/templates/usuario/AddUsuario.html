@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de encuestas y respuestas</title>
+</head>
+<body>
+
+<header>
+    <h1>Panel de Usuario</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="/encuestas/">Encuesta</a></li>
+        <li><a href="/respuestas/">Respuestas</a></li>
+    </ul>
+</nav>
+
+<main>
+    <h1>Crear Usuario</h1>
+
+        <form action="POST">
+            {% csrf_token %}
+
+            <label for="nombreUsu">Nombre del Usuario</label>
+            <input type="text" name="nombreUsu" id="nombreUsu"></input><br/>
+            
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email"></input><br/>
+        
+            <button type="submit">Guardar Usuario</button>
+        </form>
+</main>
+
+<footer>
+    <p>Aplicación creada con Django</p>
+</footer>
+
+</body>
+</html>
