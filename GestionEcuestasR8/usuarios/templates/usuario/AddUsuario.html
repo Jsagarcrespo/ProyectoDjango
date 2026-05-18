@@ -23,11 +23,20 @@
         <form action="POST">
             {% csrf_token %}
 
+            <label for="nombreUsu">DNI:</label>
+            <input type="text" name="dni" id="dni"></input><br/>
+
             <label for="nombreUsu">Nombre del Usuario</label>
             <input type="text" name="nombreUsu" id="nombreUsu"></input><br/>
+
+            <label for="nombreUsu">Apellidos</label>
+            <input type="text" name="apes" id="apes"></input><br/>
             
             <label for="email">Email</label>
             <input type="email" name="email" id="email"></input><br/>
+
+            <label for="nombreUsu">Apellidos</label>
+            <input type="text" name="apes" id="apes"></input><br/>
         
             <button type="submit">Guardar Usuario</button>
         </form>
