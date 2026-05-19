@@ -1,0 +1,46 @@
+[
+{
+    "model": "respuestas.respuesta",
+    "pk": 1,
+    "fields": {
+        "usuario": 2,
+        "pregunta": 1,
+        "opcion": 1,
+        "contenido": "",
+        "fecha_respuesta": "2026-05-19T18:33:55.021Z"
+    }
+},
+{
+    "model": "respuestas.respuesta",
+    "pk": 2,
+    "fields": {
+        "usuario": 2,
+        "pregunta": 1,
+        "opcion": 4,
+        "contenido": "",
+        "fecha_respuesta": "2026-05-19T18:34:03.228Z"
+    }
+},
+{
+    "model": "respuestas.respuesta",
+    "pk": 3,
+    "fields": {
+        "usuario": 2,
+        "pregunta": 1,
+        "opcion": 6,
+        "contenido": "",
+        "fecha_respuesta": "2026-05-19T18:34:10.251Z"
+    }
+},
+{
+    "model": "respuestas.respuesta",
+    "pk": 4,
+    "fields": {
+        "usuario": 2,
+        "pregunta": 1,
+        "opcion": null,
+        "contenido": "Nose",
+        "fecha_respuesta": "2026-05-19T18:47:19.525Z"
+    }
+}
+]
