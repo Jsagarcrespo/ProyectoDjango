@@ -1,0 +1,67 @@
+[
+{
+    "model": "encuestas.encuesta",
+    "pk": 1,
+    "fields": {
+        "titulo": "Videojuegos",
+        "descripcion": "Generos de videojuegos que le gusta a los internos de Egibide.",
+        "fecha_creacion": "2026-05-19T17:18:55.346Z"
+    }
+},
+{
+    "model": "encuestas.pregunta",
+    "pk": 1,
+    "fields": {
+        "encuesta": 1,
+        "texto": "┐Que genero te gustan?"
+    }
+},
+{
+    "model": "encuestas.opcion",
+    "pk": 1,
+    "fields": {
+        "pregunta": 1,
+        "texto": "Shooter"
+    }
+},
+{
+    "model": "encuestas.opcion",
+    "pk": 2,
+    "fields": {
+        "pregunta": 1,
+        "texto": "Aventura"
+    }
+},
+{
+    "model": "encuestas.opcion",
+    "pk": 3,
+    "fields": {
+        "pregunta": 1,
+        "texto": "Rol"
+    }
+},
+{
+    "model": "encuestas.opcion",
+    "pk": 4,
+    "fields": {
+        "pregunta": 1,
+        "texto": "RPG"
+    }
+},
+{
+    "model": "encuestas.opcion",
+    "pk": 5,
+    "fields": {
+        "pregunta": 1,
+        "texto": "Estrategia"
+    }
+},
+{
+    "model": "encuestas.opcion",
+    "pk": 6,
+    "fields": {
+        "pregunta": 1,
+        "texto": "Deportes"
+    }
+}
+]
