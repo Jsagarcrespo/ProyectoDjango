@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion de encuestas y respuestas</title>
+</head>
+<body>
+
+<h1>Lista de encuestas</h1>
+
+<hr>
+
+{% for encuesta in encuestas %}
+
+    <h3>{{ encuesta.titulo }}</h3>
+
+    <p>{{ encuesta.descripcion }}</p>
+
+    <hr>
+
+{% endfor %}
+
+
+</body>
+</html>
