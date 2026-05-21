@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar encuesta</title>
+</head>
+
+<body>
+
+<h1>Editar encuesta</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ formulario.as_p }} <!-- as table --> 
+    <button type="submit">
+        Guardar cambios
+    </button>
+
+</form>
+
+</body>
+</html>

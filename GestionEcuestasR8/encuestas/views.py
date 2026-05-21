@@ -45,3 +45,39 @@ def detalle_encuesta(request, encuesta_id):
         request,
         'encuestas/detalle_encuesta.html',{'encuesta': encuesta}
     )
+
+
+def editar_encuesta(request, encuesta_id):
+
+    encuesta = Encuesta.objects.get(id=encuesta_id)
+
+    if request.method == 'POST':
+
+        formulario = EncuestaForm(
+            request.POST,
+            instance=encuesta
+        )
+
+        if formulario.is_valid():
+
+            formulario.save()
+
+            return redirect(
+                'detalle_encuesta',
+                encuesta_id=encuesta.id
+            )
+
+    else:
+
+        formulario = EncuestaForm(
+            instance=encuesta
+        )
+
+    return render(
+        request,
+        'encuestas/editar_encuesta.html',
+        {
+            'formulario': formulario,
+            'encuesta': encuesta
+        }
+    )
