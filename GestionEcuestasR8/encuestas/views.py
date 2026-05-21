@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Encuesta
+from .forms import EncuestaForm
 
 # Create your views here.
 def index(request):
@@ -12,3 +13,24 @@ def lista_encuestas(request):
     print(encuestas)
 
     return render(request, 'encuestas/lista_encuestas.html', {'encuestas': encuestas})
+
+
+def crear_encuesta(request):
+
+    if request.method == 'POST':
+
+        formulario = EncuestaForm(request.POST)
+
+        if formulario.is_valid():
+
+            formulario.save()
+
+            return redirect('lista_encuestas')
+
+    else:
+
+        formulario = EncuestaForm()
+
+    return render(
+        request,'encuestas/crear_encuesta.html',{'formulario': formulario}
+    )
