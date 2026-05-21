@@ -34,3 +34,13 @@ def crear_encuesta(request):
     return render(
         request,'encuestas/crear_encuesta.html',{'formulario': formulario}
     )
+
+
+def detalle_encuesta(request, encuesta_id):
+
+    encuesta = Encuesta.objects.get(id=encuesta_id) ## Devolvemos solo un objeto
+
+    return render(
+        request,
+        'encuestas/detalle_encuesta.html',{'encuesta': encuesta}
+    )
