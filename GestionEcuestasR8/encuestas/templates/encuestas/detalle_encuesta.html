@@ -17,6 +17,7 @@
     {{ encuesta.fecha_creacion }}
 </p>
 
+
 <a href="/encuestas/{{ encuesta.id }}/editar/">
     Editar encuesta
 </a>
@@ -26,6 +27,27 @@
 <a href="/encuestas/{{ encuesta.id }}/eliminar/">
     Eliminar encuesta
 </a>
+
+
+<br><br>
+
+<h2>Preguntas</h2>
+
+{% for pregunta in encuesta.preguntas.all %}
+
+    <p>{{ pregunta.texto }}</p>
+
+{% empty %}
+
+    <p>No hay preguntas todavía.</p>
+
+{% endfor %}
+
+<a href="/encuestas/{{ encuesta.id }}/preguntas/crear/">
+    Añadir pregunta
+</a>
+
+
 
 </body>
 </html>

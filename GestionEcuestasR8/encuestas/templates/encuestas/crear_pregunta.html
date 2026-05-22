@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crear pregunta</title>
+</head>
+
+<body>
+
+<h1>Nueva pregunta</h1>
+
+<h3>{{ encuesta.titulo }}</h3>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    {{ formulario.as_p }}
+
+    <button type="submit">
+        Guardar pregunta
+    </button>
+
+</form>
+
+</body>
+</html>
