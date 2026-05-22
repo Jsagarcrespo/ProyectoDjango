@@ -81,3 +81,18 @@ def editar_encuesta(request, encuesta_id):
             'encuesta': encuesta
         }
     )
+
+
+def eliminar_encuesta(request, encuesta_id):
+
+    encuesta = Encuesta.objects.get(id=encuesta_id)
+
+    if request.method == 'POST':
+
+        encuesta.delete()
+
+        return redirect('lista_encuestas')
+
+    return render(
+        request,'encuestas/eliminar_encuesta.html',{'encuesta': encuesta}
+    )
