@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle usuario</title>
+</head>
+
+<body>
+
+    <h1>Detalle de usuario</h1>
+
+    <p>
+        <strong>DNI:</strong>
+        {{ usuario.dni }}
+    </p>
+
+    <p>
+        <strong>Nombre:</strong>
+        {{ usuario.nombre }}
+    </p>
+
+    <p>
+        <strong>Apellidos:</strong>
+        {{ usuario.apellidos }}
+    </p>
+
+    <p>
+        <strong>Email:</strong>
+        {{ usuario.email }}
+    </p>
+
+    <p>
+        <strong>Telefono:</strong>
+        {{ usuario.telefono }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'editar_usuario' usuario.id %}">
+        Editar usuario
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'eliminar_usuario' usuario.id %}">
+        Eliminar usuario
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'lista_usuarios' %}">
+        Volver a la lista de usuarios
+    </a>
+
+</body>
+
+</html>
