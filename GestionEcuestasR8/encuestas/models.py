@@ -2,9 +2,27 @@ from django.db import models
 
 # Create your models here.
 class Encuesta(models.Model):
+
+    ESTADOS = [
+        ('borrador', 'Borrador'),
+        ('abierta', 'Abierta'),
+        ('cerrada', 'Cerrada'),
+    ]
+
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    estado = models.CharField(
+        max_length=20,
+        choices=ESTADOS,
+        default='borrador'
+    )
+
+    fecha_cierre = models.DateField(
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.titulo
