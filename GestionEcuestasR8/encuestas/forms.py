@@ -8,7 +8,12 @@ class EncuestaForm(forms.ModelForm):
     class Meta: 
 
         model = Encuesta
-        fields = ['titulo', 'descripcion']
+        fields = ['titulo', 'descripcion','estado', 'fecha_cierre', 'destinatarios']
+
+    widgets = {
+            'fecha_cierre': forms.DateInput(attrs={'type': 'date'}),
+            'destinatarios': forms.CheckboxSelectMultiple(),
+        }
 
 
 class PreguntaForm(forms.ModelForm):

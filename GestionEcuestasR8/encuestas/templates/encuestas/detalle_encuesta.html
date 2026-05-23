@@ -17,6 +17,35 @@
     {{ encuesta.fecha_creacion }}
 </p>
 
+<p>
+    Fecha de cierre:
+    {{ encuesta.fecha_cierre }}
+</p>
+
+<p>
+    Estado:
+    {{ encuesta.estado }}
+</p>
+
+<h2>Usuarios destinatarios</h2>
+
+<ul>
+    {% for usuario in encuesta.destinatarios.all %}
+
+        <li>
+            {{ usuario.nombre }} {{ usuario.apellidos }}
+            - {{ usuario.email }}
+        </li>
+
+    {% empty %}
+
+        <li>
+            Esta encuesta todavía no tiene usuarios destinatarios.
+        </li>
+
+    {% endfor %}
+</ul>
+
 
 <a href="/encuestas/{{ encuesta.id }}/editar/">
     Editar encuesta
@@ -60,6 +89,9 @@
     <a href="{% url 'lista_encuestas' %}">
         Volver al listado
     </a>
+
+
+
 
 
 

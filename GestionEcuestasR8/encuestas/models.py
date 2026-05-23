@@ -1,4 +1,5 @@
 from django.db import models
+from usuarios.models import Usuario
 
 # Create your models here.
 class Encuesta(models.Model):
@@ -22,6 +23,12 @@ class Encuesta(models.Model):
     fecha_cierre = models.DateField(
         null=True,
         blank=True
+    )
+
+    destinatarios = models.ManyToManyField(
+        Usuario,
+        blank=True,
+        related_name='encuestas_destinatarias'
     )
 
     def __str__(self):
