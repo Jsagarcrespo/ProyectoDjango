@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Encuesta
+from .models import Encuesta, Pregunta
 from .forms import EncuestaForm
 
 from .models import Pregunta
@@ -151,11 +151,64 @@ def detalle_pregunta(request, encuesta_id, pregunta_id):
         encuesta=encuesta
     )
 
+    ## Cargamos el html y enviamos variable al template
+    ## Ahora en el html cuando vea {{ objeto.campo }} pondra los datos de la BBDD
     return render(
         request,
         'encuestas/detalle_pregunta.html',
         {
             'encuesta': encuesta,
             'pregunta': pregunta
+        }
+    )
+
+
+def editar_pregunta(request, encuesta_id, pregunta_id):
+
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
+
+    pregunta = get_object_or_404(
+        Pregunta,
+        id=pregunta_id,
+        encuesta=encuesta
+    )
+
+    if request.method == 'POST':
+
+        ## Se crea formulario con los datos enviados
+        ## Con instance le indicamos que modifique la pregunta existente y no genere ninguna nueva
+        formulario = PreguntaForm(
+            request.POST,
+            instance=pregunta
+        )
+
+        ## Comprovacion que el formulario esta bien
+        if formulario.is_valid():
+
+            ## Guardamos cambios
+            formulario.save()
+
+            ## Una vez guardado volvemos a detalle
+            return redirect(
+                'detalle_pregunta',
+                encuesta_id=encuesta.id,
+                pregunta_id=pregunta.id
+            )
+
+    ## Si se edita por primera vez 
+    else:
+        
+        ## El usuario solo esta entrando a la pagina
+        ## Crea el formulario con los datos actuales de la pregunta
+        formulario = PreguntaForm(
+            instance=pregunta
+        )
+
+    return render(
+        request,
+        'encuestas/editar_encuesta.html',
+        {
+            'formulario': formulario,
+            'encuesta': encuesta
         }
     )

@@ -35,6 +35,12 @@
     <hr>
 
     <p>
+        <a href="{% url 'editar_pregunta' encuesta.id pregunta.id %}">
+            Editar pregunta
+        </a>
+    </p>
+
+    <p>
         <a href="{% url 'detalle_encuesta' encuesta.id %}">
             Volver al detalle de la encuesta
         </a>
