@@ -16,5 +16,7 @@ urlpatterns = [
     path('<int:encuesta_id>/preguntas/<int:pregunta_id>/eliminar/',views.eliminar_pregunta,name='eliminar_pregunta'),
     path('<int:encuesta_id>/preguntas/<int:pregunta_id>/opciones/crear/',views.crear_opcion,name='crear_opcion'),
     path('<int:encuesta_id>/preguntas/<int:pregunta_id>/opciones/<int:opcion_id>/',views.detalle_opcion,name='detalle_opcion'),
+    path('<int:encuesta_id>/preguntas/<int:pregunta_id>/opciones/<int:opcion_id>/editar/',views.editar_opcion,name='editar_opcion'),
+    path('<int:encuesta_id>/preguntas/<int:pregunta_id>/opciones/<int:opcion_id>/eliminar/',views.eliminar_opcion,name='eliminar_opcion'),
 
 ]

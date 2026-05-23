@@ -313,3 +313,92 @@ def detalle_opcion(request, encuesta_id, pregunta_id, opcion_id):
             'opcion': opcion
         }
     )
+
+
+def editar_opcion(request, encuesta_id, pregunta_id, opcion_id):
+
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
+
+    pregunta = get_object_or_404(
+        Pregunta,
+        id=pregunta_id,
+        encuesta=encuesta
+    )
+
+    opcion = get_object_or_404(
+        Opcion,
+        id=opcion_id,
+        pregunta=pregunta
+    )
+
+    if request.method == 'POST':
+
+        formulario = OpcionForm(
+            request.POST,
+            instance=opcion
+        )
+
+        if formulario.is_valid():
+
+            formulario.save()
+
+            return redirect(
+                'detalle_opcion',
+                encuesta_id=encuesta.id,
+                pregunta_id=pregunta.id,
+                opcion_id=opcion.id
+            )
+
+    else:
+
+        formulario = OpcionForm(
+            instance=opcion
+        )
+
+    return render(
+        request,
+        'encuestas/editar_opcion.html',
+        {
+            'formulario': formulario,
+            'encuesta': encuesta,
+            'pregunta': pregunta,
+            'opcion': opcion
+        }
+    )
+
+
+def eliminar_opcion(request, encuesta_id, pregunta_id, opcion_id):
+
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
+
+    pregunta = get_object_or_404(
+        Pregunta,
+        id=pregunta_id,
+        encuesta=encuesta
+    )
+
+    opcion = get_object_or_404(
+        Opcion,
+        id=opcion_id,
+        pregunta=pregunta
+    )
+
+    if request.method == 'POST':
+
+        opcion.delete()
+
+        return redirect(
+            'detalle_pregunta',
+            encuesta_id=encuesta.id,
+            pregunta_id=pregunta.id
+        )
+
+    return render(
+        request,
+        'encuestas/eliminar_opcion.html',
+        {
+            'encuesta': encuesta,
+            'pregunta': pregunta,
+            'opcion': opcion
+        }
+    )

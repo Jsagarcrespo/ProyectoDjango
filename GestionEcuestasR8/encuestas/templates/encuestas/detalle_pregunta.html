@@ -73,17 +73,28 @@
                 <a href="{% url 'detalle_opcion' encuesta.id pregunta.id opcion.id %}">
                     Ver detalle
                 </a>
+
+                <a href="{% url 'editar_opcion' encuesta.id pregunta.id opcion.id %}">
+                Editar
+            </a>
+
+            
+
+            <a href="{% url 'eliminar_opcion' encuesta.id pregunta.id opcion.id %}">
+                Eliminar
+            </a>
+
             </li>
 
         {% empty %}
 
-            <li>Esta pregunta todavía no tiene opciones.</li>
+            <li>Esta pregunta todavia no tiene opciones.</li>
 
         {% endfor %}
     </ul>
 
     <a href="{% url 'crear_opcion' encuesta.id pregunta.id %}">
-        Añadir opción
+        Añadir opcion
     </a>
 
 {% else %}
