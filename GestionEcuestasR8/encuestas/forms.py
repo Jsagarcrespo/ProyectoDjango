@@ -1,6 +1,7 @@
 from django import forms
 from .models import Encuesta
 from .models import Pregunta
+from .models import Opcion
 
 class EncuestaForm(forms.ModelForm):
     
@@ -18,4 +19,15 @@ class PreguntaForm(forms.ModelForm):
 
         fields = [
             'texto','tipo_pregunta','obligatoriedad'
+        ]
+
+
+class OpcionForm(forms.ModelForm):
+
+    class Meta: 
+
+        model = Opcion
+
+        fields = [
+            'texto'
         ]
