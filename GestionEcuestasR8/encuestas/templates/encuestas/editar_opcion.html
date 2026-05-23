@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar opción</title>
+</head>
+
+<body>
+
+    <h1>Editar opción</h1>
+
+    <p>
+        <strong>Encuesta:</strong>
+        {{ encuesta.titulo }}
+    </p>
+
+    <p>
+        <strong>Pregunta:</strong>
+        {{ pregunta.texto }}
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ formulario.as_p }}
+
+        <button type="submit">
+            Guardar cambios
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'detalle_opcion' encuesta.id pregunta.id opcion.id %}">
+        Cancelar y volver al detalle de la opción
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'detalle_pregunta' encuesta.id pregunta.id %}">
+        Volver al detalle de la pregunta
+    </a>
+
+</body>
+
+</html>
