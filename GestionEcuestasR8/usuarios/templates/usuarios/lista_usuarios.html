@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de usuarios</title>
+</head>
+
+<body>
+
+    <h1>Usuarios</h1>
+
+    <a href="{% url 'crear_usuario' %}">
+        Crear nuevo usuario
+    </a>
+
+    <br><br>
+
+    <table border="1">
+
+        <tr>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Acciones</th>
+        </tr>
+
+        {% for usuario in usuarios %}
+
+            <tr>
+                <td>{{ usuario.dni }}</td>
+                <td>{{ usuario.nombre }}</td>
+                <td>{{ usuario.apellidos }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.telefono }}</td>
+                <td>
+                    <a href="{% url 'detalle_usuario' usuario.id %}">
+                        Ver detalle
+                    </a>
+
+                    |
+
+                    <a href="{% url 'editar_usuario' usuario.id %}">
+                        Editar
+                    </a>
+
+                    |
+
+                    <a href="{% url 'eliminar_usuario' usuario.id %}">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+
+        {% empty %}
+
+            <tr>
+                <td colspan="6">
+                    No hay usuarios registrados todavia.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="/encuestas/lista/">
+        Volver a encuestas
+    </a>
+
+</body>
+
+</html>
