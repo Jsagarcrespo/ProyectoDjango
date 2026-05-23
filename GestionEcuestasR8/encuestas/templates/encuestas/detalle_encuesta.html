@@ -17,9 +17,51 @@
     {{ encuesta.fecha_creacion }}
 </p>
 
+
 <a href="/encuestas/{{ encuesta.id }}/editar/">
     Editar encuesta
 </a>
+
+<br><br>
+
+<a href="/encuestas/{{ encuesta.id }}/eliminar/">
+    Eliminar encuesta
+</a>
+
+
+<br><br>
+
+<h2>Preguntas</h2>
+
+<ul>
+    <!-- Recorremos todas las preguntas asociadas a la encuesta actual 
+    Como si en BBDD preguntasemos por el where id = id 
+    -->
+    {% for pregunta in encuesta.preguntas.all %}
+        <li>
+            <p>{{ pregunta.texto }}</p>
+            <a href="{% url 'detalle_pregunta' encuesta.id pregunta.id %}">
+                Ver detalle 
+            </a>
+        </li>
+    {% empty %}
+
+        <p>No hay preguntas todavia.</p>
+
+    {% endfor %}
+</ul>
+
+    <a href="/encuestas/{{ encuesta.id }}/preguntas/crear/">
+        Añadir pregunta
+    </a>
+
+<br><br>
+
+    <a href="{% url 'lista_encuestas' %}">
+        Volver al listado
+    </a>
+
+
 
 </body>
 </html>

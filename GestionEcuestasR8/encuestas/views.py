@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Encuesta
 from .forms import EncuestaForm
+
+from .models import Pregunta
+from .forms import PreguntaForm
 
 # Create your views here.
 def index(request):
@@ -43,7 +46,7 @@ def detalle_encuesta(request, encuesta_id):
 
     return render(
         request,
-        'encuestas/detalle_encuesta.html',{'encuesta': encuesta}
+        'encuestas/detalle_encuesta.html',{'encuesta': encuesta} ## envia el objeto al HTML/template
     )
 
 
@@ -79,5 +82,76 @@ def editar_encuesta(request, encuesta_id):
         {
             'formulario': formulario,
             'encuesta': encuesta
+        }
+    )
+
+
+def eliminar_encuesta(request, encuesta_id):
+
+    encuesta = Encuesta.objects.get(id=encuesta_id)
+
+    if request.method == 'POST':
+
+        encuesta.delete()
+
+        return redirect('lista_encuestas')
+
+    return render(
+        request,'encuestas/eliminar_encuesta.html',{'encuesta': encuesta}
+    )
+
+
+
+## PREGUNTAS
+def crear_pregunta(request, encuesta_id):
+
+    encuesta = Encuesta.objects.get(id=encuesta_id)
+
+    if request.method == 'POST':
+
+        formulario = PreguntaForm(request.POST)
+
+        if formulario.is_valid():
+
+            pregunta = formulario.save(commit=False)
+
+            pregunta.encuesta = encuesta
+
+            pregunta.save()
+
+            return redirect(
+                'detalle_encuesta',
+                encuesta_id=encuesta.id
+            )
+
+    else:
+
+        formulario = PreguntaForm()
+
+    return render(
+        request,
+        'encuestas/crear_pregunta.html',
+        {
+            'formulario': formulario,
+            'encuesta': encuesta
+        }
+    )
+
+
+def detalle_pregunta(request, encuesta_id, pregunta_id):
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
+
+    pregunta = get_object_or_404(
+        Pregunta,
+        id=pregunta_id,
+        encuesta=encuesta
+    )
+
+    return render(
+        request,
+        'encuestas/detalle_pregunta.html',
+        {
+            'encuesta': encuesta,
+            'pregunta': pregunta
         }
     )
