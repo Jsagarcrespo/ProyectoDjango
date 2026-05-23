@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de pregunta</title>
+</head>
+<body>
+
+    <h1>Detalle de pregunta</h1>
+
+    <p>
+        <strong>Encuesta:</strong>
+        {{ encuesta.titulo }}
+    </p>
+
+    <p>
+        <strong>Texto de la pregunta:</strong>
+        {{ pregunta.texto }}
+    </p>
+
+    <p>
+        <strong>Tipo de pregunta:</strong>
+        {{ pregunta.tipo_pregunta }}
+    </p>
+
+    <p>
+        <strong>Obligatoria:</strong>
+        {% if pregunta.obligatoriedad %}
+            Sí
+        {% else %}
+            No
+        {% endif %}
+    </p>
+
+    <hr>
+
+    <p>
+        <a href="{% url 'detalle_encuesta' encuesta.id %}">
+            Volver al detalle de la encuesta
+        </a>
+    </p>
+
+    <p>
+        <a href="{% url 'lista_encuestas' %}">
+            Volver al listado de encuestas
+        </a>
+    </p>
+
+</body>
+</html>
