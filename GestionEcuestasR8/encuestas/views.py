@@ -139,8 +139,12 @@ def crear_pregunta(request, encuesta_id):
 
 
 def detalle_pregunta(request, encuesta_id, pregunta_id):
+    ## Busca en la BBDD mediante el id (sql: where id = id)
+    ## Si no existe devuelve error 404
+    ## id viene desde la url
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
+    ## sql: where id = pregunta_id and encuesta_id = encuesta.id, con esto nos aseguramos que la pregunta pertenece a la encuesta
     pregunta = get_object_or_404(
         Pregunta,
         id=pregunta_id,
