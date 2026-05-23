@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Encuesta, Pregunta
+from .models import Encuesta, Pregunta, Opcion
 from .forms import EncuestaForm
 
 from .models import Pregunta
 from .forms import PreguntaForm
+
+from .models import Opcion
+from .forms import OpcionForm
 
 # Create your views here.
 def index(request):
@@ -114,9 +117,7 @@ def crear_pregunta(request, encuesta_id):
         if formulario.is_valid():
 
             pregunta = formulario.save(commit=False)
-
             pregunta.encuesta = encuesta
-
             pregunta.save()
 
             return redirect(
@@ -237,5 +238,78 @@ def eliminar_pregunta (request, encuesta_id, pregunta_id):
         {
             'encuesta': encuesta,
             'pregunta': pregunta,
+        }
+    )
+
+
+## Opciones
+
+def crear_opcion(request, encuesta_id, pregunta_id):
+
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
+
+    pregunta = get_object_or_404(
+        Pregunta,
+        id=pregunta_id,
+        encuesta=encuesta
+    )
+
+    if request.method == 'POST':
+
+        formulario = OpcionForm(request.POST)
+
+        if formulario.is_valid():
+
+            ## Creamos el objeto pero sin guardarlo
+            opcion = formulario.save(commit=False)
+            ## con esto referenciamos a la pregunta que pertenece
+            opcion.pregunta = pregunta
+            opcion.save()
+
+            return redirect(
+                'detalle_opcion',
+                encuesta_id=encuesta.id,
+                pregunta_id=pregunta.id,
+                opcion_id=opcion.id
+            )
+
+    else:
+
+        formulario = OpcionForm()
+
+    return render(
+        request,
+        'encuestas/crear_opcion.html',
+        {
+            'formulario': formulario,
+            'encuesta': encuesta,
+            'pregunta': pregunta
+        }
+    )
+
+
+def detalle_opcion(request, encuesta_id, pregunta_id, opcion_id):
+
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
+
+    pregunta = get_object_or_404(
+        Pregunta,
+        id=pregunta_id,
+        encuesta=encuesta
+    )
+
+    opcion = get_object_or_404(
+        Opcion,
+        id=opcion_id,
+        pregunta=pregunta
+    )
+
+    return render(
+        request,
+        'encuestas/detalle_opcion.html',
+        {
+            'encuesta': encuesta,
+            'pregunta': pregunta,
+            'opcion': opcion
         }
     )

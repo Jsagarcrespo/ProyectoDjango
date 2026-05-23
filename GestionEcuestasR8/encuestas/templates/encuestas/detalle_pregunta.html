@@ -58,5 +58,41 @@
         </a>
     </p>
 
+    <hr>
+
+    <h2>Opciones de respuesta</h2>
+
+{% if pregunta.tipo_pregunta == 'multiple' %}
+
+    <ul>
+        {% for opcion in pregunta.opciones.all %}
+
+            <li>
+                {{ opcion.texto }}
+
+                <a href="{% url 'detalle_opcion' encuesta.id pregunta.id opcion.id %}">
+                    Ver detalle
+                </a>
+            </li>
+
+        {% empty %}
+
+            <li>Esta pregunta todavía no tiene opciones.</li>
+
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'crear_opcion' encuesta.id pregunta.id %}">
+        Añadir opción
+    </a>
+
+{% else %}
+
+    <p>
+        Esta pregunta es de tipo texto, por eso no necesita opciones.
+    </p>
+
+{% endif %}
+
 </body>
 </html>
