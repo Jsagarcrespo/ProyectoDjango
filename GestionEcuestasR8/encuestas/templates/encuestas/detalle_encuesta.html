@@ -33,19 +33,33 @@
 
 <h2>Preguntas</h2>
 
-{% for pregunta in encuesta.preguntas.all %}
+<ul>
+    <!-- Recorremos todas las preguntas asociadas a la encuesta actual 
+    Como si en BBDD preguntasemos por el where id = id 
+    -->
+    {% for pregunta in encuesta.preguntas.all %}
+        <li>
+            <p>{{ pregunta.texto }}</p>
+            <a href="{% url 'detalle_pregunta' encuesta.id pregunta.id %}">
+                Ver detalle 
+            </a>
+        </li>
+    {% empty %}
 
-    <p>{{ pregunta.texto }}</p>
+        <p>No hay preguntas todavia.</p>
 
-{% empty %}
+    {% endfor %}
+</ul>
 
-    <p>No hay preguntas todavía.</p>
+    <a href="/encuestas/{{ encuesta.id }}/preguntas/crear/">
+        Añadir pregunta
+    </a>
 
-{% endfor %}
+<br><br>
 
-<a href="/encuestas/{{ encuesta.id }}/preguntas/crear/">
-    Añadir pregunta
-</a>
+    <a href="{% url 'lista_encuestas' %}">
+        Volver al listado
+    </a>
 
 
 

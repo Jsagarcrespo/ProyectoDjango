@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Encuesta
 from .forms import EncuestaForm
 
@@ -46,7 +46,7 @@ def detalle_encuesta(request, encuesta_id):
 
     return render(
         request,
-        'encuestas/detalle_encuesta.html',{'encuesta': encuesta}
+        'encuestas/detalle_encuesta.html',{'encuesta': encuesta} ## envia el objeto al HTML/template
     )
 
 
@@ -134,5 +134,24 @@ def crear_pregunta(request, encuesta_id):
         {
             'formulario': formulario,
             'encuesta': encuesta
+        }
+    )
+
+
+def detalle_pregunta(request, encuesta_id, pregunta_id):
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
+
+    pregunta = get_object_or_404(
+        Pregunta,
+        id=pregunta_id,
+        encuesta=encuesta
+    )
+
+    return render(
+        request,
+        'encuestas/detalle_pregunta.html',
+        {
+            'encuesta': encuesta,
+            'pregunta': pregunta
         }
     )
