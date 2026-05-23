@@ -41,6 +41,12 @@
     </p>
 
     <p>
+        <a href="{% url 'eliminar_pregunta' encuesta.id pregunta.id %}">
+            Eliminar pregunta
+        </a>
+    </p>
+
+    <p>
         <a href="{% url 'detalle_encuesta' encuesta.id %}">
             Volver al detalle de la encuesta
         </a>

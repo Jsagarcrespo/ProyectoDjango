@@ -209,6 +209,33 @@ def editar_pregunta(request, encuesta_id, pregunta_id):
         'encuestas/editar_encuesta.html',
         {
             'formulario': formulario,
-            'encuesta': encuesta
+            'encuesta': encuesta,
+            'pregunta': pregunta,
+        }
+    )
+
+
+def eliminar_pregunta (request, encuesta_id, pregunta_id):
+
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
+
+    pregunta = get_object_or_404(
+        Pregunta,
+        id=pregunta_id,
+        encuesta=encuesta
+    )
+
+    if request.method == 'POST':
+
+        pregunta.delete()
+
+        return redirect('detalle_encuesta', encuesta_id=encuesta.id)
+
+    return render(
+        request,
+        'encuestas/eliminar_pregunta.html',
+        {
+            'encuesta': encuesta,
+            'pregunta': pregunta,
         }
     )

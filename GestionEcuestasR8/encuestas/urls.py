@@ -13,5 +13,6 @@ urlpatterns = [
     path('<int:encuesta_id>/preguntas/crear/',views.crear_pregunta,name='crear_pregunta'),
     path('<int:encuesta_id>/preguntas/<int:pregunta_id>/',views.detalle_pregunta,name='detalle_pregunta'),
     path('<int:encuesta_id>/preguntas/<int:pregunta_id>/editar/',views.editar_pregunta,name='editar_pregunta'),
+    path('<int:encuesta_id>/preguntas/<int:pregunta_id>/eliminar/',views.eliminar_pregunta,name='eliminar_pregunta'),
 
 ]
