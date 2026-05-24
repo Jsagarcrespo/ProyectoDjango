@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Respuestas por encuesta</title>
+</head>
+
+<body>
+
+    <h1>Respuestas de la encuesta</h1>
+
+    <h2>{{ encuesta.titulo }}</h2>
+
+    <table border="1">
+
+        <tr>
+            <th>Pregunta</th>
+            <th>Usuario</th>
+            <th>Respuesta</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+
+        {% for respuesta in respuestas %}
+
+            <tr>
+                <td>{{ respuesta.pregunta.texto }}</td>
+                <td>{{ respuesta.usuario.nombre }} {{ respuesta.usuario.apellidos }}</td>
+                <td>{{ respuesta.contenido }}</td>
+                <td>{{ respuesta.fecha_respuesta }}</td>
+                <td>
+                    <a href="{% url 'detalle_respuesta' encuesta.id respuesta.pregunta.id respuesta.id %}">
+                        Ver detalle
+                    </a>
+                </td>
+            </tr>
+
+        {% empty %}
+
+            <tr>
+                <td colspan="5">
+                    Esta encuesta todavia no tiene respuestas.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="{% url 'detalle_encuesta' encuesta.id %}">
+        Volver al detalle de la encuesta
+    </a>
+
+</body>
+
+</html>
