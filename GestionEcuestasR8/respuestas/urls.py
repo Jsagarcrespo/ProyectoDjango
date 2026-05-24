@@ -22,5 +22,11 @@ urlpatterns = [
         views.eliminar_respuesta,
         name='eliminar_respuesta'
     ),
+
+    path(
+    'encuesta/<int:encuesta_id>/resultados/',
+    views.resultados_encuesta,
+    name='resultados_encuesta'
+    ),
 ]
 

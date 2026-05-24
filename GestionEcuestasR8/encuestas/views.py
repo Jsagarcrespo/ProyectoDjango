@@ -8,6 +8,8 @@ from .forms import PreguntaForm
 from .models import Opcion
 from .forms import OpcionForm
 
+from datetime import date
+
 # Create your views here.
 def index(request):
     return render(request, 'encuestas/encuesta.html')
@@ -46,6 +48,8 @@ def crear_encuesta(request):
 def detalle_encuesta(request, encuesta_id):
 
     encuesta = Encuesta.objects.get(id=encuesta_id) ## Devolvemos solo un objeto
+
+    update_cierre(encuesta)
 
     return render(
         request,
@@ -151,6 +155,7 @@ def detalle_pregunta(request, encuesta_id, pregunta_id):
         id=pregunta_id,
         encuesta=encuesta
     )
+
 
     ## Cargamos el html y enviamos variable al template
     ## Ahora en el html cuando vea {{ objeto.campo }} pondra los datos de la BBDD
@@ -402,3 +407,16 @@ def eliminar_opcion(request, encuesta_id, pregunta_id, opcion_id):
             'opcion': opcion
         }
     )
+
+
+
+## ACTUALIZAR ESTADO POR FECHA
+
+def update_cierre(encuesta):
+
+    if encuesta.fecha_cierre is not None:
+
+        if encuesta.fecha_cierre < date.today() and encuesta.estado != 'cerrada':
+
+            encuesta.estado = 'cerrada'
+            encuesta.save()
