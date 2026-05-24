@@ -43,6 +43,13 @@
         <p><strong>Fecha creacion:</strong> {{ encuesta.fecha_creacion }}</p>
         <p><strong>Fecha cierre:</strong> {{ encuesta.fecha_cierre|default:"Sin fecha de cierre" }}</p>
         <p><strong>Estado:</strong> <span class="badge">{{ encuesta.estado }}</span></p>
+
+        <br>
+        <section class="button-row bottom-actions">
+        <a class="btn btn-secondary" href="{% url 'resultados_encuesta' encuesta.id %}">Ver resultados de la encuesta</a>
+
+</section>
+
     </article>
 
     <article class="detail-card">
@@ -54,6 +61,7 @@
                 <li>Esta encuesta todavia no tiene usuarios destinatarios.</li>
             {% endfor %}
         </ul>
+        
     </article>
 </section>
 

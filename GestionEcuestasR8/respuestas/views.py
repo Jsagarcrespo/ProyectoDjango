@@ -6,6 +6,7 @@ from .forms import RespuestaForm
 from encuestas.models import Encuesta, Pregunta
 from usuarios.models import Usuario
 
+from django.db.models import Count
 # Create your views here.
 
 ## Comprobar si una pregunta tiene opcion multiple
@@ -306,5 +307,68 @@ def resp_x_usu(request, usuario_id):
         {
             'usuario': usuario,
             'respuestas': respuestas
+        }
+    )
+
+
+def resultados_encuesta(request, encuesta_id):
+
+    encuesta = get_object_or_404(
+        Encuesta,
+        id=encuesta_id
+    )
+
+    ## Filtramos las preguntas que solo pertencen a esta encuesta
+    preguntas = Pregunta.objects.filter(
+        encuesta=encuesta
+    )
+
+    ## donde meteremos los resultado
+    resultados = []
+
+    for pregunta in preguntas:
+
+        if es_pregunta_multiple(pregunta):
+
+            conteos = Respuesta.objects.filter( ## buscamos respuestas
+                pregunta=pregunta, ## solo respuestas de la pregunta
+                opcion__isnull=False
+            ).values(
+                'opcion__texto'
+            ).annotate(
+                total=Count('id') ## contamos cuantas veces aparece cada opcion
+            ).order_by(
+                'opcion__texto' ## ordenado alfabeticamente
+            )
+
+            resultados.append({ ## añadimos a la lista vacia
+                'pregunta': pregunta,
+                'tipo': 'multiple',
+                'conteos': conteos
+            })
+
+        else:
+
+            ## Busca respuestas de esa pregunta
+            respuestas_texto = Respuesta.objects.filter(
+                pregunta=pregunta
+            ).select_related( ## traemos los datos del usuario
+                'usuario'
+            ).order_by(
+                'fecha_respuesta'
+            )
+
+            resultados.append({
+                'pregunta': pregunta,
+                'tipo': 'texto',
+                'respuestas_texto': respuestas_texto
+            })
+
+    return render(
+        request,
+        'respuestas/resultados_encuesta.html',
+        {
+            'encuesta': encuesta,
+            'resultados': resultados
         }
     )
