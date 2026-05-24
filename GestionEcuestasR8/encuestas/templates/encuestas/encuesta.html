@@ -1,22 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Gestion de encuestas y respuestas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'encuestas/css/style.css' %}">
 </head>
 <body>
-
-<header>
-    <h1>Panel de Encuestas</h1>
+<header class="site-header">
+    <div class="site-header__inner">
+        <div>
+            <p class="site-kicker">Reto 8 · SGE</p>
+            <h1 class="site-title">Egibide Feedback Systems</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="{% url 'encuestas' %}">Inicio</a>
+            <a href="{% url 'lista_encuestas' %}">Encuestas</a>
+            <a href="{% url 'lista_usuarios' %}">Usuarios</a>
+            <a href="{% url 'lista_respuestas' %}">Respuestas</a>
+            <a href="/admin/">Admin</a>
+        </nav>
+    </div>
 </header>
+<main class="container">
+<section class="hero">
+    <div>
+        <p class="eyebrow">Panel principal</p>
+        <h2>Gestion de encuestas internas</h2>
+    </div>
+</section>
 
-<nav>
-    <ul>
-        <li><a href="/respuestas/">Respuestas</a></li>
-        <li><a href="/usuario/"> Usuario</a></li>
-    </ul>
-</nav>
+<section class="dashboard-grid">
+    <article class="dashboard-card">
+        <h3>Encuestas</h3>
+        <p>Desde este punto se hara el CRUD de encuestas. Tambien prodremos visualizar sus preguntas y los destinatarios</p>
+        <a class="btn btn-primary" href="{% url 'lista_encuestas' %}">Ir a encuestas</a>
+    </article>
 
+    <article class="dashboard-card">
+        <h3>Usuarios</h3>
+        <p>Desde este punto se hara el CRUD de usuarios. Tambien prodremos visualizar sus preguntas y los destinatarios</p>
+        <a class="btn btn-primary" href="{% url 'lista_usuarios' %}">Ir a usuarios</a>
+    </article>
 
+    <article class="dashboard-card">
+        <h3>Respuestas</h3>
+        <p>Consultar respuestas registradas, filtradas por encuesta o por usuario.</p>
+        <a class="btn btn-primary" href="{% url 'lista_respuestas' %}">Ir a respuestas</a>
+    </article>
+</section>
+
+<footer class="site-footer">
+    <p>Aplicación Django para Gestion de encuestas internas, preguntas, opciones, usuarios y respuestas.</p>
+</footer>
 </body>
 </html>

@@ -1,136 +1,101 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Detalle de pregunta</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle pregunta</title>
+    <link rel="stylesheet" href="{% static 'encuestas/css/style.css' %}">
 </head>
 <body>
+<header class="site-header">
+    <div class="site-header__inner">
+        <div>
+            <p class="site-kicker">Reto 8 · SGE</p>
+            <h1 class="site-title">Egibide Feedback Systems</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="{% url 'encuestas' %}">Inicio</a>
+            <a href="{% url 'lista_encuestas' %}">Encuestas</a>
+            <a href="{% url 'lista_usuarios' %}">Usuarios</a>
+            <a href="{% url 'lista_respuestas' %}">Respuestas</a>
+            <a href="/admin/">Admin</a>
+        </nav>
+    </div>
+</header>
+<main class="container">
+<div class="page-title-row">
+    <div>
+        <p class="eyebrow">Detalle de pregunta</p>
+        <h2>{{ pregunta.texto }}</h2>
+    </div>
+    <div class="button-row">
+        <a class="btn btn-secondary" href="{% url 'detalle_encuesta' encuesta.id %}">Volver a encuesta</a>
+        <a class="btn btn-primary" href="{% url 'editar_pregunta' encuesta.id pregunta.id %}">Editar</a>
+        <a class="btn btn-danger" href="{% url 'eliminar_pregunta' encuesta.id pregunta.id %}">Eliminar</a>
+    </div>
+</div>
 
-    <h1>Detalle de pregunta</h1>
+<section class="detail-grid">
+    <article class="detail-card detail-card--wide">
+        <h3>Datos de la pregunta</h3>
+        <p><strong>Encuesta:</strong> {{ encuesta.titulo }}</p>
+        <p><strong>Tipo:</strong> {{ pregunta.tipo_pregunta }}</p>
+        <p><strong>Obligatoria:</strong> {% if pregunta.obligatoriedad %}Sí{% else %}No{% endif %}</p>
+    </article>
+</section>
 
-    <p>
-        <strong>Encuesta:</strong>
-        {{ encuesta.titulo }}
-    </p>
-
-    <p>
-        <strong>Texto de la pregunta:</strong>
-        {{ pregunta.texto }}
-    </p>
-
-    <p>
-        <strong>Tipo de pregunta:</strong>
-        {{ pregunta.tipo_pregunta }}
-    </p>
-
-    <p>
-        <strong>Obligatoria:</strong>
-        {% if pregunta.obligatoriedad %}
-            Sí
-        {% else %}
-            No
+<section class="section-card">
+    <div class="page-title-row small-row">
+        <h3>Opciones de respuesta</h3>
+        {% if pregunta.tipo_pregunta == 'multiple' or pregunta.tipo_pregunta == 'opcion' or pregunta.tipo_pregunta == 'OPCION' %}
+            <a class="btn btn-primary" href="{% url 'crear_opcion' encuesta.id pregunta.id %}">Añadir opción</a>
         {% endif %}
-    </p>
+    </div>
 
-    <hr>
+    {% if pregunta.tipo_pregunta == 'multiple' or pregunta.tipo_pregunta == 'opcion' or pregunta.tipo_pregunta == 'OPCION' %}
+        <ul class="item-list">
+            {% for opcion in pregunta.opciones.all %}
+                <li>
+                    <strong>{{ opcion.texto }}</strong>
+                    <div class="actions">
+                        <a href="{% url 'detalle_opcion' encuesta.id pregunta.id opcion.id %}">Detalle</a>
+                        <a href="{% url 'editar_opcion' encuesta.id pregunta.id opcion.id %}">Editar</a>
+                        <a class="danger-link" href="{% url 'eliminar_opcion' encuesta.id pregunta.id opcion.id %}">Eliminar</a>
+                    </div>
+                </li>
+            {% empty %}
+                <li>Esta pregunta todavía no tiene opciones.</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="muted">Esta pregunta es de tipo texto, por eso no necesita opciones.</p>
+    {% endif %}
+</section>
 
-    <p>
-        <a href="{% url 'editar_pregunta' encuesta.id pregunta.id %}">
-            Editar pregunta
-        </a>
-    </p>
+<section class="section-card">
+    <div class="page-title-row small-row">
+        <h3>Respuestas de esta pregunta</h3>
+        <a class="btn btn-primary" href="{% url 'crear_respuesta' encuesta.id pregunta.id %}">Responder pregunta</a>
+    </div>
 
-    <p>
-        <a href="{% url 'eliminar_pregunta' encuesta.id pregunta.id %}">
-            Eliminar pregunta
-        </a>
-    </p>
-
-    <p>
-        <a href="{% url 'detalle_encuesta' encuesta.id %}">
-            Volver al detalle de la encuesta
-        </a>
-    </p>
-
-    <p>
-        <a href="{% url 'lista_encuestas' %}">
-            Volver al listado de encuestas
-        </a>
-    </p>
-
-    <hr>
-
-    <h2>Opciones de respuesta</h2>
-
-{% if pregunta.tipo_pregunta == 'multiple' %}
-
-    <ul>
-        {% for opcion in pregunta.opciones.all %}
-
+    <ul class="item-list">
+        {% for respuesta in pregunta.respuestas.all %}
             <li>
-                {{ opcion.texto }}
-
-                <a href="{% url 'detalle_opcion' encuesta.id pregunta.id opcion.id %}">
-                    Ver detalle
-                </a>
-
-                <a href="{% url 'editar_opcion' encuesta.id pregunta.id opcion.id %}">
-                Editar
-            </a>
-
-            
-
-            <a href="{% url 'eliminar_opcion' encuesta.id pregunta.id opcion.id %}">
-                Eliminar
-            </a>
-
+                <div>
+                    <strong>{{ respuesta.usuario.nombre }} {{ respuesta.usuario.apellidos }}</strong><br>
+                    <span>{{ respuesta.contenido }}</span>
+                </div>
+                <a href="{% url 'detalle_respuesta' encuesta.id pregunta.id respuesta.id %}">Ver detalle</a>
             </li>
-
         {% empty %}
-
-            <li>Esta pregunta todavia no tiene opciones.</li>
-
+            <li>Esta pregunta todavía no tiene respuestas.</li>
         {% endfor %}
     </ul>
-
-    <a href="{% url 'crear_opcion' encuesta.id pregunta.id %}">
-        Añadir opcion
-    </a>
-
-{% else %}
-
-    <p>
-        Esta pregunta es de tipo texto, por eso no necesita opciones.
-    </p>
-
-{% endif %}
-
-<br><br>
-
-<h2>Respuestas de esta pregunta</h2>
-
-<ul>
-    {% for respuesta in pregunta.respuestas.all %}
-
-        <li>
-            {{ respuesta.usuario.nombre }} {{ respuesta.usuario.apellidos }}:
-            {{ respuesta.contenido }}
-
-            <a href="{% url 'detalle_respuesta' encuesta.id pregunta.id respuesta.id %}">
-                Ver detalle
-            </a>
-        </li>
-
-    {% empty %}
-
-        <li>Esta pregunta todavía no tiene respuestas.</li>
-
-    {% endfor %}
-</ul>
-
-<a href="{% url 'crear_respuesta' encuesta.id pregunta.id %}">
-    Responder pregunta
-</a>
-
+</section>
+</main>
+<footer class="site-footer">
+    <p>Aplicación Django para gestión de encuestas internas, preguntas, opciones, usuarios y respuestas.</p>
+</footer>
 </body>
 </html>

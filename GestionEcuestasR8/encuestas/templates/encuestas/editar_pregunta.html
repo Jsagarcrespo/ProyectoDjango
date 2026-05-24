@@ -1,41 +1,51 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar pregunta</title>
+    <link rel="stylesheet" href="{% static 'encuestas/css/style.css' %}">
 </head>
-
 <body>
+<header class="site-header">
+    <div class="site-header__inner">
+        <div>
+            <p class="site-kicker">Reto 8 · SGE</p>
+            <h1 class="site-title">Egibide Feedback Systems</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="{% url 'encuestas' %}">Inicio</a>
+            <a href="{% url 'lista_encuestas' %}">Encuestas</a>
+            <a href="{% url 'lista_usuarios' %}">Usuarios</a>
+            <a href="{% url 'lista_respuestas' %}">Respuestas</a>
+            <a href="/admin/">Admin</a>
+        </nav>
+    </div>
+</header>
+<main class="container">
+<div class="page-title-row">
+    <div>
+        <p class="eyebrow">Preguntas</p>
+        <h2>Editar pregunta</h2>
+        <p>Encuesta: <strong>{{ encuesta.titulo }}</strong></p>
+    </div>
+    <a class="btn btn-secondary" href="{% url 'detalle_pregunta' encuesta.id pregunta.id %}">Volver al detalle</a>
+</div>
 
-    <h1>Editar pregunta</h1>
-
-    <h2>Encuesta: {{ encuesta.titulo }}</h2>
-
+<section class="form-card">
     <form method="POST">
-
         {% csrf_token %}
-
         {{ formulario.as_p }}
-
-        <button type="submit">
-            Guardar cambios
-        </button>
-
+        <div class="button-row">
+            <button class="btn btn-primary" type="submit">Guardar cambios</button>
+            <a class="btn btn-light" href="{% url 'detalle_pregunta' encuesta.id pregunta.id %}">Cancelar</a>
+        </div>
     </form>
-
-    <br>
-
-    <a href="{% url 'detalle_pregunta' encuesta.id pregunta.id %}">
-        Cancelar y volver al detalle de la pregunta
-    </a>
-
-    <br><br>
-
-    <a href="{% url 'detalle_encuesta' encuesta.id %}">
-        Volver al detalle de la encuesta
-    </a>
-
+</section>
+</main>
+<footer class="site-footer">
+    <p>Aplicación Django para gestión de encuestas internas, preguntas, opciones, usuarios y respuestas.</p>
+</footer>
 </body>
-
 </html>
