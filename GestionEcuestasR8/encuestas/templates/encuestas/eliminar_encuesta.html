@@ -1,35 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar encuesta</title>
+    <link rel="stylesheet" href="{% static 'encuestas/css/style.css' %}">
 </head>
-
 <body>
+<header class="site-header">
+    <div class="site-header__inner">
+        <div>
+            <p class="site-kicker">Reto 8 · SGE</p>
+            <h1 class="site-title">Egibide Feedback Systems</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="{% url 'encuestas' %}">Inicio</a>
+            <a href="{% url 'lista_encuestas' %}">Encuestas</a>
+            <a href="{% url 'lista_usuarios' %}">Usuarios</a>
+            <a href="{% url 'lista_respuestas' %}">Respuestas</a>
+            <a href="/admin/">Admin</a>
+        </nav>
+    </div>
+</header>
+<main class="container">
+<section class="confirm-card danger-card">
+    <p class="eyebrow">Eliminar encuesta</p>
+    <h2>¿Seguro que quieres eliminar esta encuesta?</h2>
+    <p>Encuesta: <strong>{{ encuesta.titulo }}</strong></p>
+    <p>Si eliminas una encuesta, tambien se eliminaran sus preguntas asociadas.</p>
 
-<h1>Eliminar encuesta</h1>
-
-<p>
-    ¿Seguro que quieres eliminar?:
-    <strong>{{ encuesta.titulo }}</strong>?
-</p>
-
-<form method="POST">
-
-    {% csrf_token %}
-
-    <button type="submit">
-        Si, eliminar
-    </button>
-
-</form>
-
-<br>
-
-<a href="/encuestas/{{ encuesta.id }}/">
-    Cancelar
-</a>
-
+    <form method="POST">
+        {% csrf_token %}
+        <div class="button-row">
+            <button class="btn btn-danger" type="submit">Sí, eliminar</button>
+            <a class="btn btn-light" href="{% url 'detalle_encuesta' encuesta.id %}">Cancelar</a>
+        </div>
+    </form>
+</section>
+</main>
+<footer class="site-footer">
+    <p>Aplicación Django para gestión de encuestas internas, preguntas, opciones, usuarios y respuestas.</p>
+</footer>
 </body>
 </html>

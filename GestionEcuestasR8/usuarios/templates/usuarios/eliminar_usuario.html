@@ -1,56 +1,46 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar usuario</title>
+    <link rel="stylesheet" href="{% static 'encuestas/css/style.css' %}">
 </head>
-
 <body>
-
-    <h1>Eliminar usuario</h1>
-
-    <p>
-        Vas a eliminar al usuario:
-    </p>
-
-    <p>
-        <strong>
-            {{ usuario.nombre }} {{ usuario.apellidos }}
-        </strong>
-    </p>
-
-    <p>
-        DNI:
-        <strong>{{ usuario.dni }}</strong>
-    </p>
-
-    <p>
-        ¿Seguro que quieres eliminar este usuario?
-    </p>
+<header class="site-header">
+    <div class="site-header__inner">
+        <div>
+            <p class="site-kicker">Reto 8 · SGE</p>
+            <h1 class="site-title">Egibide Feedback Systems</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="{% url 'encuestas' %}">Inicio</a>
+            <a href="{% url 'lista_encuestas' %}">Encuestas</a>
+            <a href="{% url 'lista_usuarios' %}">Usuarios</a>
+            <a href="{% url 'lista_respuestas' %}">Respuestas</a>
+            <a href="/admin/">Admin</a>
+        </nav>
+    </div>
+</header>
+<main class="container">
+<section class="confirm-card danger-card">
+    <p class="eyebrow">Eliminar usuario</p>
+    <h2>¿Seguro que quieres eliminar este usuario?</h2>
+    <p>Usuario: <strong>{{ usuario.nombre }} {{ usuario.apellidos }}</strong></p>
+    <p>DNI: <strong>{{ usuario.dni }}</strong></p>
 
     <form method="POST">
-
         {% csrf_token %}
-
-        <button type="submit">
-            Sí, eliminar usuario
-        </button>
-
+        <div class="button-row">
+            <button class="btn btn-danger" type="submit">Sí, eliminar usuario</button>
+            <a class="btn btn-light" href="{% url 'detalle_usuario' usuario.id %}">Cancelar</a>
+        </div>
     </form>
-
-    <br>
-
-    <a href="{% url 'detalle_usuario' usuario.id %}">
-        Cancelar y volver al detalle
-    </a>
-
-    <br><br>
-
-    <a href="{% url 'lista_usuarios' %}">
-        Volver a la lista de usuarios
-    </a>
-
+</section>
+</main>
+<footer class="site-footer">
+    <p>Aplicación Django para gestión de encuestas internas, preguntas, opciones, usuarios y respuestas.</p>
+</footer>
 </body>
-
 </html>
