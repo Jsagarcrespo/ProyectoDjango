@@ -105,5 +105,32 @@
 
 {% endif %}
 
+<br><br>
+
+<h2>Respuestas de esta pregunta</h2>
+
+<ul>
+    {% for respuesta in pregunta.respuestas.all %}
+
+        <li>
+            {{ respuesta.usuario.nombre }} {{ respuesta.usuario.apellidos }}:
+            {{ respuesta.contenido }}
+
+            <a href="{% url 'detalle_respuesta' encuesta.id pregunta.id respuesta.id %}">
+                Ver detalle
+            </a>
+        </li>
+
+    {% empty %}
+
+        <li>Esta pregunta todavía no tiene respuestas.</li>
+
+    {% endfor %}
+</ul>
+
+<a href="{% url 'crear_respuesta' encuesta.id pregunta.id %}">
+    Responder pregunta
+</a>
+
 </body>
 </html>

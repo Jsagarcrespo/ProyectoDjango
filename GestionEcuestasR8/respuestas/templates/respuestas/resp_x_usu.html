@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Respuestas por usuario</title>
+</head>
+
+<body>
+
+    <h1>Respuestas de usuario</h1>
+
+    <h2>
+        {{ usuario.nombre }} {{ usuario.apellidos }}
+    </h2>
+
+    <table border="1">
+
+        <tr>
+            <th>Encuesta</th>
+            <th>Pregunta</th>
+            <th>Respuesta</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+
+        {% for respuesta in respuestas %}
+
+            <tr>
+                <td>{{ respuesta.pregunta.encuesta.titulo }}</td>
+                <td>{{ respuesta.pregunta.texto }}</td>
+                <td>{{ respuesta.contenido }}</td>
+                <td>{{ respuesta.fecha_respuesta }}</td>
+                <td>
+                    <a href="{% url 'detalle_respuesta' respuesta.pregunta.encuesta.id respuesta.pregunta.id respuesta.id %}">
+                        Ver detalle
+                    </a>
+                </td>
+            </tr>
+
+        {% empty %}
+
+            <tr>
+                <td colspan="5">
+                    Este usuario todavia no tiene respuestas.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <br>
+
+    <a href="{% url 'detalle_usuario' usuario.id %}">
+        Volver al detalle del usuario
+    </a>
+
+</body>
+
+</html>

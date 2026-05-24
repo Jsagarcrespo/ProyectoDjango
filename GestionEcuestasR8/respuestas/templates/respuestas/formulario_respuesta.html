@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario respuesta</title>
+</head>
+
+<body>
+
+    {% if modo == 'crear' %}
+        <h1>Crear respuesta</h1>
+    {% else %}
+        <h1>Editar respuesta</h1>
+    {% endif %}
+
+    <h2>Encuesta: {{ encuesta.titulo }}</h2>
+
+    <p>
+        <strong>Pregunta:</strong>
+        {{ pregunta.texto }}
+    </p>
+
+    <p>
+        <strong>Tipo de pregunta:</strong>
+        {{ pregunta.tipo_pregunta }}
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <p>
+            {{ formulario.usuario.label_tag }}
+            {{ formulario.usuario }}
+            {{ formulario.usuario.errors }}
+        </p>
+
+        {% if pregunta.tipo_pregunta == 'multiple' or pregunta.tipo_pregunta == 'opcion' or pregunta.tipo_pregunta == 'OPCION' %}
+
+            <p>
+                {{ formulario.opcion.label_tag }}
+                {{ formulario.opcion }}
+                {{ formulario.opcion.errors }}
+            </p>
+
+        {% else %}
+
+            <p>
+                {{ formulario.contenido.label_tag }}
+                {{ formulario.contenido }}
+                {{ formulario.contenido.errors }}
+            </p>
+
+        {% endif %}
+
+        <button type="submit">
+            Guardar respuesta
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'detalle_pregunta' encuesta.id pregunta.id %}">
+        Volver al detalle de la pregunta
+    </a>
+
+</body>
+
+</html>

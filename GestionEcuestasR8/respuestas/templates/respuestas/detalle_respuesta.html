@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle respuesta</title>
+</head>
+
+<body>
+
+    <h1>Detalle de respuesta</h1>
+
+    <p>
+        <strong>Código respuesta:</strong>
+        {{ respuesta.id }}
+    </p>
+
+    <p>
+        <strong>Encuesta:</strong>
+        {{ encuesta.titulo }}
+    </p>
+
+    <p>
+        <strong>Pregunta:</strong>
+        {{ pregunta.texto }}
+    </p>
+
+    <p>
+        <strong>Usuario:</strong>
+        {{ respuesta.usuario.nombre }} {{ respuesta.usuario.apellidos }}
+    </p>
+
+    {% if respuesta.opcion %}
+
+        <p>
+            <strong>Opción elegida:</strong>
+            {{ respuesta.opcion.texto }}
+        </p>
+
+    {% endif %}
+
+    <p>
+        <strong>Contenido:</strong>
+        {{ respuesta.contenido }}
+    </p>
+
+    <p>
+        <strong>Fecha respuesta:</strong>
+        {{ respuesta.fecha_respuesta }}
+    </p>
+
+    <br>
+
+    <a href="{% url 'editar_respuesta' encuesta.id pregunta.id respuesta.id %}">
+        Editar respuesta
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'eliminar_respuesta' encuesta.id pregunta.id respuesta.id %}">
+        Eliminar respuesta
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'resp_x_enc' encuesta.id %}">
+        Ver respuestas de la encuesta
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'detalle_pregunta' encuesta.id pregunta.id %}">
+        Volver al detalle de la pregunta
+    </a>
+
+</body>
+
+</html>

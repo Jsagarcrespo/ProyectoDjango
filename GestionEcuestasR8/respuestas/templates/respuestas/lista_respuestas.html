@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista respuestas</title>
+</head>
+
+<body>
+
+    <h1>Listado de respuestas</h1>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>Encuesta</th>
+            <th>Pregunta</th>
+            <th>Usuario</th>
+            <th>Respuesta</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+        </tr>
+
+        {% for respuesta in respuestas %}
+
+            <tr>
+                <td>{{ respuesta.id }}</td>
+                <td>{{ respuesta.pregunta.encuesta.titulo }}</td>
+                <td>{{ respuesta.pregunta.texto }}</td>
+                <td>{{ respuesta.usuario.nombre }} {{ respuesta.usuario.apellidos }}</td>
+                <td>{{ respuesta.contenido }}</td>
+                <td>{{ respuesta.fecha_respuesta }}</td>
+                <td>
+                    <a href="{% url 'detalle_respuesta' respuesta.pregunta.encuesta.id respuesta.pregunta.id respuesta.id %}">
+                        Ver detalle
+                    </a>
+                </td>
+            </tr>
+
+        {% empty %}
+
+            <tr>
+                <td colspan="7">
+                    No hay respuestas registradas todavia.
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+
+</html>

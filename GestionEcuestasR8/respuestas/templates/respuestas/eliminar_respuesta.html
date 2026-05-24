@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar respuesta</title>
+</head>
+
+<body>
+
+    <h1>Eliminar respuesta</h1>
+
+    <p>
+        Vas a eliminar la respuesta de:
+        <strong>{{ respuesta.usuario.nombre }} {{ respuesta.usuario.apellidos }}</strong>
+    </p>
+
+    <p>
+        <strong>Pregunta:</strong>
+        {{ pregunta.texto }}
+    </p>
+
+    <p>
+        <strong>Respuesta:</strong>
+        {{ respuesta.contenido }}
+    </p>
+
+    <p>
+        ¿Seguro que quieres eliminar esta respuesta?
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button type="submit">
+            Si, eliminar respuesta
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'detalle_respuesta' encuesta.id pregunta.id respuesta.id %}">
+        Cancelar y volver al detalle
+    </a>
+
+</body>
+
+</html>
