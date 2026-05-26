@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis encuestas</title>
+    <link rel="stylesheet" href="{% static 'encuestas/css/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+    <div class="site-header__inner">
+        <div>
+            <p class="site-kicker">Zona de usuario</p>
+            <h1 class="site-title">Mis encuestas</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="{% url 'mis_encuestas' %}">Mis encuestas</a>
+            <a href="{% url 'logout_usuario' %}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="detail-card">
+        <h2>{{ usuario.nombre }} {{ usuario.apellidos }}</h2>
+        <p><strong>DNI:</strong> {{ usuario.dni }}</p>
+        <p><strong>Email:</strong> {{ usuario.email }}</p>
+    </section>
+
+    <section class="table-card">
+        <h2>Encuestas asignadas</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="success-message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <table>
+            <tr>
+                <th>Título</th>
+                <th>Estado</th>
+                <th>Fecha cierre</th>
+                <th>Acción</th>
+            </tr>
+
+            {% for encuesta in encuestas %}
+                <tr>
+                    <td>{{ encuesta.titulo }}</td>
+                    <td>{{ encuesta.estado }}</td>
+                    <td>{{ encuesta.fecha_cierre }}</td>
+                    <td>
+                        {% if encuesta.estado == 'cerrada' %}
+                            <span>Encuesta cerrada</span>
+                        {% else %}
+                            <a class="btn btn-primary" href="{% url 'responder_encuesta_usuario' encuesta.id %}">
+                                Responder encuesta
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No tienes encuestas asignadas.</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>Aplicación Django para gestión de encuestas internas.</p>
+</footer>
+</body>
+</html>

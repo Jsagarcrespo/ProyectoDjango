@@ -10,66 +10,87 @@ from .forms import OpcionForm
 
 from datetime import date
 
-# Create your views here.
+from usuarios.decorators import admin_required
+
+
 def index(request):
-    return render(request, 'encuestas/encuesta.html')
+   ## Va a ser la primera pagina del proyecto, verificamos si hay login. 
+   ## El usuario puede ser: Admin o Normal
+   ## Si es admin ira al panel de administrador. Si es usuairo normal vera sus encuestas
+
+    if not request.user.is_authenticated:
+        return redirect('login_usuario')
+
+    if request.user.is_staff:
+        return render(request, 'encuestas/encuesta.html')
+
+    return redirect('mis_encuestas')
 
 
+@admin_required
 def lista_encuestas(request):
-    encuestas = Encuesta.objects.all()
+    encuestas = Encuesta.objects.all().order_by('fecha_cierre', 'titulo')
 
-    print(encuestas)
-
-    return render(request, 'encuestas/lista_encuestas.html', {'encuestas': encuestas})
-
-
-def crear_encuesta(request):
-
-    if request.method == 'POST':
-
-        formulario = EncuestaForm(request.POST)
-
-        if formulario.is_valid():
-
-            formulario.save()
-
-            return redirect('lista_encuestas')
-
-    else:
-
-        formulario = EncuestaForm()
+    # Revisamos el cierre automático al entrar al listado.
+    for encuesta in encuestas:
+        update_cierre(encuesta)
 
     return render(
-        request,'encuestas/crear_encuesta.html',{'formulario': formulario}
-
+        request,
+        'encuestas/lista_encuestas.html',
+        {
+            'encuestas': encuestas
+        }
     )
 
 
-def detalle_encuesta(request, encuesta_id):
+@admin_required
+def crear_encuesta(request):
+    if request.method == 'POST':
+        formulario = EncuestaForm(request.POST)
 
-    encuesta = Encuesta.objects.get(id=encuesta_id) ## Devolvemos solo un objeto
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('lista_encuestas')
+
+    else:
+        formulario = EncuestaForm()
+
+    return render(
+        request,
+        'encuestas/crear_encuesta.html',
+        {
+            'formulario': formulario
+        }
+    )
+
+
+@admin_required
+def detalle_encuesta(request, encuesta_id):
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     update_cierre(encuesta)
 
     return render(
         request,
-        'encuestas/detalle_encuesta.html',{'encuesta': encuesta} ## envia el objeto al HTML/template
+        'encuestas/detalle_encuesta.html',
+        {
+            'encuesta': encuesta
+        }
     )
 
 
+@admin_required
 def editar_encuesta(request, encuesta_id):
-
-    encuesta = Encuesta.objects.get(id=encuesta_id)
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     if request.method == 'POST':
-
         formulario = EncuestaForm(
             request.POST,
             instance=encuesta
         )
 
         if formulario.is_valid():
-
             formulario.save()
 
             return redirect(
@@ -78,7 +99,6 @@ def editar_encuesta(request, encuesta_id):
             )
 
     else:
-
         formulario = EncuestaForm(
             instance=encuesta
         )
@@ -93,33 +113,31 @@ def editar_encuesta(request, encuesta_id):
     )
 
 
+@admin_required
 def eliminar_encuesta(request, encuesta_id):
-
-    encuesta = Encuesta.objects.get(id=encuesta_id)
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     if request.method == 'POST':
-
         encuesta.delete()
-
         return redirect('lista_encuestas')
 
     return render(
-        request,'encuestas/eliminar_encuesta.html',{'encuesta': encuesta}
+        request,
+        'encuestas/eliminar_encuesta.html',
+        {
+            'encuesta': encuesta
+        }
     )
 
 
-
-## PREGUNTAS
+@admin_required
 def crear_pregunta(request, encuesta_id):
-
-    encuesta = Encuesta.objects.get(id=encuesta_id)
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     if request.method == 'POST':
-
         formulario = PreguntaForm(request.POST)
 
         if formulario.is_valid():
-
             pregunta = formulario.save(commit=False)
             pregunta.encuesta = encuesta
             pregunta.save()
@@ -130,7 +148,6 @@ def crear_pregunta(request, encuesta_id):
             )
 
     else:
-
         formulario = PreguntaForm()
 
     return render(
@@ -143,6 +160,7 @@ def crear_pregunta(request, encuesta_id):
     )
 
 
+@admin_required
 def detalle_pregunta(request, encuesta_id, pregunta_id):
     ## Busca en la BBDD mediante el id (sql: where id = id)
     ## Si no existe devuelve error 404
@@ -156,7 +174,6 @@ def detalle_pregunta(request, encuesta_id, pregunta_id):
         encuesta=encuesta
     )
 
-
     ## Cargamos el html y enviamos variable al template
     ## Ahora en el html cuando vea {{ objeto.campo }} pondra los datos de la BBDD
     return render(
@@ -169,8 +186,8 @@ def detalle_pregunta(request, encuesta_id, pregunta_id):
     )
 
 
+@admin_required
 def editar_pregunta(request, encuesta_id, pregunta_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -190,8 +207,6 @@ def editar_pregunta(request, encuesta_id, pregunta_id):
 
         ## Comprovacion que el formulario esta bien
         if formulario.is_valid():
-
-            ## Guardamos cambios
             formulario.save()
 
             ## Una vez guardado volvemos a detalle
@@ -201,9 +216,9 @@ def editar_pregunta(request, encuesta_id, pregunta_id):
                 pregunta_id=pregunta.id
             )
 
-    ## Si se edita por primera vez 
+    ## Si se edita por primera vez
     else:
-        
+
         ## El usuario solo esta entrando a la pagina
         ## Crea el formulario con los datos actuales de la pregunta
         formulario = PreguntaForm(
@@ -212,7 +227,7 @@ def editar_pregunta(request, encuesta_id, pregunta_id):
 
     return render(
         request,
-        'encuestas/editar_encuesta.html',
+        'encuestas/editar_pregunta.html',
         {
             'formulario': formulario,
             'encuesta': encuesta,
@@ -221,8 +236,8 @@ def editar_pregunta(request, encuesta_id, pregunta_id):
     )
 
 
-def eliminar_pregunta (request, encuesta_id, pregunta_id):
-
+@admin_required
+def eliminar_pregunta(request, encuesta_id, pregunta_id):
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -232,10 +247,12 @@ def eliminar_pregunta (request, encuesta_id, pregunta_id):
     )
 
     if request.method == 'POST':
-
         pregunta.delete()
 
-        return redirect('detalle_encuesta', encuesta_id=encuesta.id)
+        return redirect(
+            'detalle_encuesta',
+            encuesta_id=encuesta.id
+        )
 
     return render(
         request,
@@ -247,10 +264,11 @@ def eliminar_pregunta (request, encuesta_id, pregunta_id):
     )
 
 
+
 ## Opciones
 
+@admin_required
 def crear_opcion(request, encuesta_id, pregunta_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -260,7 +278,6 @@ def crear_opcion(request, encuesta_id, pregunta_id):
     )
 
     if request.method == 'POST':
-
         formulario = OpcionForm(request.POST)
 
         if formulario.is_valid():
@@ -279,7 +296,6 @@ def crear_opcion(request, encuesta_id, pregunta_id):
             )
 
     else:
-
         formulario = OpcionForm()
 
     return render(
@@ -293,8 +309,8 @@ def crear_opcion(request, encuesta_id, pregunta_id):
     )
 
 
+@admin_required
 def detalle_opcion(request, encuesta_id, pregunta_id, opcion_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -320,8 +336,8 @@ def detalle_opcion(request, encuesta_id, pregunta_id, opcion_id):
     )
 
 
+@admin_required
 def editar_opcion(request, encuesta_id, pregunta_id, opcion_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -337,14 +353,12 @@ def editar_opcion(request, encuesta_id, pregunta_id, opcion_id):
     )
 
     if request.method == 'POST':
-
         formulario = OpcionForm(
             request.POST,
             instance=opcion
         )
 
         if formulario.is_valid():
-
             formulario.save()
 
             return redirect(
@@ -355,7 +369,6 @@ def editar_opcion(request, encuesta_id, pregunta_id, opcion_id):
             )
 
     else:
-
         formulario = OpcionForm(
             instance=opcion
         )
@@ -372,8 +385,8 @@ def editar_opcion(request, encuesta_id, pregunta_id, opcion_id):
     )
 
 
+@admin_required
 def eliminar_opcion(request, encuesta_id, pregunta_id, opcion_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -389,7 +402,6 @@ def eliminar_opcion(request, encuesta_id, pregunta_id, opcion_id):
     )
 
     if request.method == 'POST':
-
         opcion.delete()
 
         return redirect(
@@ -409,14 +421,9 @@ def eliminar_opcion(request, encuesta_id, pregunta_id, opcion_id):
     )
 
 
-
-## ACTUALIZAR ESTADO POR FECHA
-
 def update_cierre(encuesta):
-
+    ## Cierra automaticamente si pasa la fecha de cierre
     if encuesta.fecha_cierre is not None:
-
         if encuesta.fecha_cierre < date.today() and encuesta.estado != 'cerrada':
-
             encuesta.estado = 'cerrada'
             encuesta.save()

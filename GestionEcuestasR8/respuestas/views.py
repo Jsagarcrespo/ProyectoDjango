@@ -1,28 +1,30 @@
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
+
+from usuarios.decorators import admin_required
+from usuarios.models import Usuario
+from encuestas.models import Encuesta, Pregunta, Opcion
 
 from .models import Respuesta
 from .forms import RespuestaForm
-
-from encuestas.models import Encuesta, Pregunta
-from usuarios.models import Usuario
-
-from django.db.models import Count
 # Create your views here.
 
 ## Comprobar si una pregunta tiene opcion multiple
 def es_pregunta_multiple(pregunta):
-    return pregunta.tipo_pregunta == 'multiple'
+    return pregunta.tipo_pregunta in ['multiple', 'opcion', 'OPCION']
 
 
+@admin_required
 def lista_respuestas(request):
-
     # Sacamos respusetas con sus relaciones
     respuestas = Respuesta.objects.select_related(
         'usuario',
         'pregunta',
         'pregunta__encuesta', ## doble guion bajo para acceder a relaciones en modelos
         'opcion'
-    ).all().order_by('-fecha_respuesta') ## Ordenar de forma descendente
+    ).all().order_by('-fecha_respuesta')
 
     return render(
         request,
@@ -33,8 +35,8 @@ def lista_respuestas(request):
     )
 
 
+@admin_required
 def detalle_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -60,8 +62,8 @@ def detalle_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
     )
 
 
+@admin_required
 def crear_respuesta(request, encuesta_id, pregunta_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -71,7 +73,6 @@ def crear_respuesta(request, encuesta_id, pregunta_id):
     )
 
     if request.method == 'POST':
-
         formulario = RespuestaForm(
             request.POST,
             pregunta=pregunta
@@ -89,28 +90,21 @@ def crear_respuesta(request, encuesta_id, pregunta_id):
 
                 ## si no se elige opcion saltara el error
                 if opcion is None:
-                    formulario.add_error(
-                        'opcion',
-                        'Debes elegir una opcion para esta pregunta.'
-                    )
+                    formulario.add_error('opcion', 'Debes elegir una opción para esta pregunta.')
                     hay_error = True
 
             else:
-
                 contenido = formulario.cleaned_data.get('contenido')
 
                 if not contenido:
-                    formulario.add_error(
-                        'contenido',
-                        'Debes escribir una respuesta de texto.'
-                    )
+                    formulario.add_error('contenido', 'Debes escribir una respuesta de texto.')
                     hay_error = True
 
             if not hay_error:
-
+                
+                # La pregunta no esta en el formulario porque viene indicada por la URL. Se lo asignamos manualmente
                 respuesta = formulario.save(commit=False)
 
-                # La pregunta no esta en el formulario porque viene indicada por la URL. Se lo asignamos manualmente
                 respuesta.pregunta = pregunta
 
                 # Si es de opcion multiple, guardamos también el texto de la opcion en contenido.
@@ -127,7 +121,6 @@ def crear_respuesta(request, encuesta_id, pregunta_id):
                 )
 
     else:
-
         formulario = RespuestaForm(
             pregunta=pregunta
         )
@@ -144,8 +137,8 @@ def crear_respuesta(request, encuesta_id, pregunta_id):
     )
 
 
+@admin_required
 def editar_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -161,7 +154,6 @@ def editar_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
     )
 
     if request.method == 'POST':
-
         formulario = RespuestaForm(
             request.POST,
             instance=respuesta,
@@ -169,33 +161,23 @@ def editar_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
         )
 
         if formulario.is_valid():
-
             hay_error = False
 
             if es_pregunta_multiple(pregunta):
-
                 opcion = formulario.cleaned_data.get('opcion')
 
                 if opcion is None:
-                    formulario.add_error(
-                        'opcion',
-                        'Debes elegir una opcion para esta pregunta.'
-                    )
+                    formulario.add_error('opcion', 'Debes elegir una opción para esta pregunta.')
                     hay_error = True
 
             else:
-
                 contenido = formulario.cleaned_data.get('contenido')
 
                 if not contenido:
-                    formulario.add_error(
-                        'contenido',
-                        'Debes escribir una respuesta de texto.'
-                    )
+                    formulario.add_error('contenido', 'Debes escribir una respuesta de texto.')
                     hay_error = True
 
             if not hay_error:
-
                 respuesta_editada = formulario.save(commit=False)
                 respuesta_editada.pregunta = pregunta
 
@@ -212,7 +194,6 @@ def editar_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
                 )
 
     else:
-
         formulario = RespuestaForm(
             instance=respuesta,
             pregunta=pregunta
@@ -231,8 +212,8 @@ def editar_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
     )
 
 
+@admin_required
 def eliminar_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     pregunta = get_object_or_404(
@@ -248,7 +229,6 @@ def eliminar_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
     )
 
     if request.method == 'POST':
-
         respuesta.delete()
 
         return redirect(
@@ -267,8 +247,8 @@ def eliminar_respuesta(request, encuesta_id, pregunta_id, respuesta_id):
     )
 
 
+@admin_required
 def resp_x_enc(request, encuesta_id):
-
     encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     respuestas = Respuesta.objects.filter(
@@ -289,8 +269,8 @@ def resp_x_enc(request, encuesta_id):
     )
 
 
+@admin_required
 def resp_x_usu(request, usuario_id):
-
     usuario = get_object_or_404(Usuario, id=usuario_id)
 
     respuestas = Respuesta.objects.filter(
@@ -311,12 +291,9 @@ def resp_x_usu(request, usuario_id):
     )
 
 
+@admin_required
 def resultados_encuesta(request, encuesta_id):
-
-    encuesta = get_object_or_404(
-        Encuesta,
-        id=encuesta_id
-    )
+    encuesta = get_object_or_404(Encuesta, id=encuesta_id)
 
     ## Filtramos las preguntas que solo pertencen a esta encuesta
     preguntas = Pregunta.objects.filter(
@@ -327,9 +304,7 @@ def resultados_encuesta(request, encuesta_id):
     resultados = []
 
     for pregunta in preguntas:
-
         if es_pregunta_multiple(pregunta):
-
             conteos = Respuesta.objects.filter( ## buscamos respuestas
                 pregunta=pregunta, ## solo respuestas de la pregunta
                 opcion__isnull=False
@@ -338,7 +313,7 @@ def resultados_encuesta(request, encuesta_id):
             ).annotate(
                 total=Count('id') ## contamos cuantas veces aparece cada opcion
             ).order_by(
-                'opcion__texto' ## ordenado alfabeticamente
+                'opcion__texto' 
             )
 
             resultados.append({ ## añadimos a la lista vacia
@@ -370,5 +345,110 @@ def resultados_encuesta(request, encuesta_id):
         {
             'encuesta': encuesta,
             'resultados': resultados
+        }
+    )
+
+
+@login_required(login_url='login_usuario')
+def responder_encuesta_usuario(request, encuesta_id):
+    """
+    Vista para usuarios normales.
+
+    El usuario NO puede elegir quién responde.
+    La respuesta queda asociada automáticamente al Usuario vinculado a request.user.
+    """
+    if request.user.is_staff:
+        return redirect('detalle_encuesta', encuesta_id=encuesta_id)
+
+    try:
+        usuario = request.user.perfil_usuario
+    except Usuario.DoesNotExist:
+        return render(request, 'usuarios/sin_perfil.html')
+
+    encuesta = get_object_or_404(
+        Encuesta.objects.filter(destinatarios=usuario),
+        id=encuesta_id
+    )
+
+    preguntas = list(
+        Pregunta.objects.filter(
+            encuesta=encuesta
+        ).prefetch_related(
+            'opciones'
+        ).order_by('id')
+    )
+
+    respuestas_actuales = Respuesta.objects.filter(
+        usuario=usuario,
+        pregunta__encuesta=encuesta
+    ).select_related('pregunta', 'opcion')
+
+    respuestas_por_pregunta = {
+        respuesta.pregunta_id: respuesta
+        for respuesta in respuestas_actuales
+    }
+
+    for pregunta in preguntas:
+        respuesta_actual = respuestas_por_pregunta.get(pregunta.id)
+        pregunta.respuesta_actual = respuesta_actual
+        pregunta.opcion_actual_id = respuesta_actual.opcion_id if respuesta_actual else None
+        pregunta.contenido_actual = respuesta_actual.contenido if respuesta_actual else ''
+
+    errores = []
+
+    if request.method == 'POST':
+        for pregunta in preguntas:
+            if es_pregunta_multiple(pregunta):
+                opcion_id = request.POST.get(f'opcion_{pregunta.id}')
+
+                if pregunta.obligatoriedad and not opcion_id:
+                    errores.append(f'Debes responder la pregunta: {pregunta.texto}')
+                    continue
+
+                if opcion_id:
+                    opcion = get_object_or_404(
+                        Opcion,
+                        id=opcion_id,
+                        pregunta=pregunta
+                    )
+
+                    Respuesta.objects.update_or_create(
+                        usuario=usuario,
+                        pregunta=pregunta,
+                        defaults={
+                            'opcion': opcion,
+                            'contenido': opcion.texto
+                        }
+                    )
+
+            else:
+                contenido = request.POST.get(f'contenido_{pregunta.id}', '').strip()
+
+                if pregunta.obligatoriedad and not contenido:
+                    errores.append(f'Debes responder la pregunta: {pregunta.texto}')
+                    continue
+
+                if contenido:
+                    Respuesta.objects.update_or_create(
+                        usuario=usuario,
+                        pregunta=pregunta,
+                        defaults={
+                            'opcion': None,
+                            'contenido': contenido
+                        }
+                    )
+
+        if not errores:
+            messages.success(request, 'Encuesta respondida correctamente.')
+            return redirect('mis_encuestas')
+
+    return render(
+        request,
+        'respuestas/responder_encuesta_usuario.html',
+        {
+            'usuario': usuario,
+            'encuesta': encuesta,
+            'preguntas': preguntas,
+            'errores': errores
         }
     )

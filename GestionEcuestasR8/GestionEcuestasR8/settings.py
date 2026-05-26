@@ -127,3 +127,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = 'login_usuario'
+LOGIN_REDIRECT_URL = 'encuestas'
+LOGOUT_REDIRECT_URL = 'login_usuario'
