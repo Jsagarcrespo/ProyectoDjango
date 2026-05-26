@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuario sin perfil</title>
+    <link rel="stylesheet" href="{% static 'encuestas/css/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+    <div class="site-header__inner">
+        <div>
+            <p class="site-kicker">Aviso</p>
+            <h1 class="site-title">Usuario sin perfil asociado</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="{% url 'logout_usuario' %}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <section class="detail-card">
+        <p>Tu cuenta de login existe, pero no está vinculada a ningún Usuario del reto.</p>
+        <p>Un administrador debe crear o editar tu usuario y asociarlo correctamente.</p>
+    </section>
+</main>
+</body>
+</html>

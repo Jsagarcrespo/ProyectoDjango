@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'encuestas/css/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+    <div class="site-header__inner">
+        <div>
+            <p class="site-kicker">Reto 8 · SGE</p>
+            <h1 class="site-title">Egibide Feedback Systems</h1>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <section class="form-card">
+        <h2>Iniciar sesión</h2>
+        <p>Entra como administrador o como usuario destinatario de encuestas.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ formulario.as_p }}
+
+            <div class="button-row">
+                <button class="btn btn-primary" type="submit">Entrar</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>Aplicación Django para gestión de encuestas internas.</p>
+</footer>
+</body>
+</html>

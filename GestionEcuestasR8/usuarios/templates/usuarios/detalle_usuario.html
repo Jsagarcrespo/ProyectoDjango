@@ -42,6 +42,13 @@
     <p><strong>Apellidos:</strong> {{ usuario.apellidos }}</p>
     <p><strong>Email:</strong> {{ usuario.email }}</p>
     <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+
+    {% if usuario.auth_user %}
+        <p><strong>Usuario de login:</strong> {{ usuario.auth_user.username }}</p>
+    {% else %}
+        <p><strong>Usuario de login:</strong> Sin cuenta asociada</p>
+    {% endif %}
+
 </section>
 
 <section class="button-row bottom-actions">

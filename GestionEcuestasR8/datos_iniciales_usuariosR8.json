@@ -1,0 +1,1259 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$adminSaltR8$jnF9+3A4YwuQAFT1sdnLDq9g1rehqgIj/cbnRx5T5CE=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "Administrador",
+      "last_name": "Reto 8",
+      "email": "admin@egibide.test",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2026-05-01T08:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR81$SlFwHZev7uKCmQpwyicQiToPQnejlL7uZkOM/hwKVRA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "ane.garcia",
+      "first_name": "Ane",
+      "last_name": "García López",
+      "email": "ane.garcia@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR82$ZFJZXINIsI2t+PDBxkOV2PdGU16vSL+P4ei/7TIM6/w=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "mikel.ruiz",
+      "first_name": "Mikel",
+      "last_name": "Ruiz Pérez",
+      "email": "mikel.ruiz@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR83$txbhnxRwIA8E3Bp0BjisnfW6hY0k1SOVK/iPJPujQKU=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "nerea.martinez",
+      "first_name": "Nerea",
+      "last_name": "Martínez Soto",
+      "email": "nerea.martinez@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR84$/vkqxW1IcVWTvUV1dOyn93jRd0+igLJM0e5gTfOV/w0=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "iker.fernandez",
+      "first_name": "Iker",
+      "last_name": "Fernández Ruiz",
+      "email": "iker.fernandez@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR85$lpmhMTDafLiBQpfbDnYNW07fbX9M19zcGAizMkxyDwk=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "leire.sanchez",
+      "first_name": "Leire",
+      "last_name": "Sánchez Martín",
+      "email": "leire.sanchez@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR86$nYymdjNcX0By4VDN7eLnTvfE4N4g5xZrNQplV7seHng=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "unai.moreno",
+      "first_name": "Unai",
+      "last_name": "Moreno Aguirre",
+      "email": "unai.moreno@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR87$/Z57bhU9Jbw+Nme+7x39wWsTIdXdMiLQZ9VOHQhyFVQ=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "maialen.ortiz",
+      "first_name": "Maialen",
+      "last_name": "Ortiz Delgado",
+      "email": "maialen.ortiz@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR88$OohyKki0+Is/Bwhqu3jvNVPH2lhO384i56tGi8jjJzc=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "jon.alonso",
+      "first_name": "Jon",
+      "last_name": "Alonso Prieto",
+      "email": "jon.alonso@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR89$14io894vDMgA6cvmyf7NJDM8ucVXvTw/UD2A1vNHghc=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "irati.vega",
+      "first_name": "Irati",
+      "last_name": "Vega Ramos",
+      "email": "irati.vega@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 11,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR810$+2vIWK5uzXGW9KFxzBuc7ZUTA8NZeVYl5gFiutNPYFI=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "asier.landa",
+      "first_name": "Asier",
+      "last_name": "Landa Gil",
+      "email": "asier.landa@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 12,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR811$61OAdEDdSdcT1J8fmLcbWlVTivCHuV5qWMtCSnB24Mg=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "june.arrieta",
+      "first_name": "June",
+      "last_name": "Arrieta Cano",
+      "email": "june.arrieta@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 13,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR812$rMRJGxlpHuj3j91blIChY/KdjWdDr2xP+rqNzNT8AwA=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "gorka.molina",
+      "first_name": "Gorka",
+      "last_name": "Molina Sáez",
+      "email": "gorka.molina@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 14,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR813$ghlgEOPl8wlxBzeeg3b1NLWKSEdMpK9ZVeFRAOs/0lo=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "naia.herrero",
+      "first_name": "Naia",
+      "last_name": "Herrero Díaz",
+      "email": "naia.herrero@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 15,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR814$9unSGHb6jTWQE2Y+E5V37sLtqlTDT8obzfzarLYxD48=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "oier.castro",
+      "first_name": "Oier",
+      "last_name": "Castro León",
+      "email": "oier.castro@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 16,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR815$w/iBrbSHyjXf5sHTkCVMDPnegMlkgDdtQYwlgu+DWfE=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "uxue.navarro",
+      "first_name": "Uxue",
+      "last_name": "Navarro Peña",
+      "email": "uxue.navarro@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 17,
+    "fields": {
+      "password": "pbkdf2_sha256$870000$userSaltR816$HtqD+umxcrA23titrogVxheVNMaL2fF9dRt4BbIfdhw=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "aitor.iglesias",
+      "first_name": "Aitor",
+      "last_name": "Iglesias Rueda",
+      "email": "aitor.iglesias@egibide.test",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-05-01T09:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 1,
+    "fields": {
+      "auth_user": 2,
+      "dni": "11111111A",
+      "nombre": "Ane",
+      "apellidos": "García López",
+      "email": "ane.garcia@egibide.test",
+      "telefono": "600111111"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 2,
+    "fields": {
+      "auth_user": 3,
+      "dni": "22222222B",
+      "nombre": "Mikel",
+      "apellidos": "Ruiz Pérez",
+      "email": "mikel.ruiz@egibide.test",
+      "telefono": "600222222"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 3,
+    "fields": {
+      "auth_user": 4,
+      "dni": "33333333C",
+      "nombre": "Nerea",
+      "apellidos": "Martínez Soto",
+      "email": "nerea.martinez@egibide.test",
+      "telefono": "600333333"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 4,
+    "fields": {
+      "auth_user": 5,
+      "dni": "44444444D",
+      "nombre": "Iker",
+      "apellidos": "Fernández Ruiz",
+      "email": "iker.fernandez@egibide.test",
+      "telefono": "600444444"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 5,
+    "fields": {
+      "auth_user": 6,
+      "dni": "55555555E",
+      "nombre": "Leire",
+      "apellidos": "Sánchez Martín",
+      "email": "leire.sanchez@egibide.test",
+      "telefono": "600555555"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 6,
+    "fields": {
+      "auth_user": 7,
+      "dni": "66666666F",
+      "nombre": "Unai",
+      "apellidos": "Moreno Aguirre",
+      "email": "unai.moreno@egibide.test",
+      "telefono": "600666666"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 7,
+    "fields": {
+      "auth_user": 8,
+      "dni": "77777777G",
+      "nombre": "Maialen",
+      "apellidos": "Ortiz Delgado",
+      "email": "maialen.ortiz@egibide.test",
+      "telefono": "600777777"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 8,
+    "fields": {
+      "auth_user": 9,
+      "dni": "88888888H",
+      "nombre": "Jon",
+      "apellidos": "Alonso Prieto",
+      "email": "jon.alonso@egibide.test",
+      "telefono": "600888888"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 9,
+    "fields": {
+      "auth_user": 10,
+      "dni": "99999999J",
+      "nombre": "Irati",
+      "apellidos": "Vega Ramos",
+      "email": "irati.vega@egibide.test",
+      "telefono": "600999999"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 10,
+    "fields": {
+      "auth_user": 11,
+      "dni": "12121212K",
+      "nombre": "Asier",
+      "apellidos": "Landa Gil",
+      "email": "asier.landa@egibide.test",
+      "telefono": "601121212"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 11,
+    "fields": {
+      "auth_user": 12,
+      "dni": "13131313L",
+      "nombre": "June",
+      "apellidos": "Arrieta Cano",
+      "email": "june.arrieta@egibide.test",
+      "telefono": "601131313"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 12,
+    "fields": {
+      "auth_user": 13,
+      "dni": "14141414M",
+      "nombre": "Gorka",
+      "apellidos": "Molina Sáez",
+      "email": "gorka.molina@egibide.test",
+      "telefono": "601141414"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 13,
+    "fields": {
+      "auth_user": 14,
+      "dni": "15151515N",
+      "nombre": "Naia",
+      "apellidos": "Herrero Díaz",
+      "email": "naia.herrero@egibide.test",
+      "telefono": "601151515"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 14,
+    "fields": {
+      "auth_user": 15,
+      "dni": "16161616P",
+      "nombre": "Oier",
+      "apellidos": "Castro León",
+      "email": "oier.castro@egibide.test",
+      "telefono": "601161616"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 15,
+    "fields": {
+      "auth_user": 16,
+      "dni": "17171717Q",
+      "nombre": "Uxue",
+      "apellidos": "Navarro Peña",
+      "email": "uxue.navarro@egibide.test",
+      "telefono": "601171717"
+    }
+  },
+  {
+    "model": "usuarios.usuario",
+    "pk": 16,
+    "fields": {
+      "auth_user": 17,
+      "dni": "18181818R",
+      "nombre": "Aitor",
+      "apellidos": "Iglesias Rueda",
+      "email": "aitor.iglesias@egibide.test",
+      "telefono": "601181818"
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 1,
+    "fields": {
+      "titulo": "Satisfacción con el comedor",
+      "descripcion": "Encuesta interna para valorar el servicio de comedor.",
+      "fecha_creacion": "2026-05-01T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-06-15",
+      "destinatarios": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 2,
+    "fields": {
+      "titulo": "Valoración de aulas",
+      "descripcion": "Encuesta para conocer la opinión sobre aulas, espacios y recursos.",
+      "fecha_creacion": "2026-05-02T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-06-20",
+      "destinatarios": [
+        2,
+        3,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 3,
+    "fields": {
+      "titulo": "Actividades complementarias",
+      "descripcion": "Encuesta sobre actividades realizadas durante el curso.",
+      "fecha_creacion": "2026-05-03T09:00:00Z",
+      "estado": "borrador",
+      "fecha_cierre": "2026-07-01",
+      "destinatarios": [
+        1,
+        5,
+        9,
+        10
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 4,
+    "fields": {
+      "titulo": "Opinión sobre horarios",
+      "descripcion": "Encuesta para recoger propuestas de mejora sobre los horarios.",
+      "fecha_creacion": "2026-05-04T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-06-10",
+      "destinatarios": [
+        4,
+        6,
+        8,
+        11,
+        12
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 5,
+    "fields": {
+      "titulo": "Uso de biblioteca",
+      "descripcion": "Encuesta para analizar el uso de la biblioteca y sus servicios.",
+      "fecha_creacion": "2026-05-05T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-06-25",
+      "destinatarios": [
+        3,
+        7,
+        9,
+        13
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 6,
+    "fields": {
+      "titulo": "Clima de clase",
+      "descripcion": "Encuesta para valorar el ambiente de trabajo en clase.",
+      "fecha_creacion": "2026-05-06T09:00:00Z",
+      "estado": "borrador",
+      "fecha_cierre": "2026-07-05",
+      "destinatarios": [
+        1,
+        6,
+        10,
+        14
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 7,
+    "fields": {
+      "titulo": "Materiales de clase",
+      "descripcion": "Encuesta para revisar si los materiales son adecuados.",
+      "fecha_creacion": "2026-05-07T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-06-30",
+      "destinatarios": [
+        2,
+        4,
+        8,
+        12,
+        16
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 8,
+    "fields": {
+      "titulo": "Encuesta final de curso",
+      "descripcion": "Encuesta general de valoración final del curso.",
+      "fecha_creacion": "2026-05-08T09:00:00Z",
+      "estado": "cerrada",
+      "fecha_cierre": "2026-05-20",
+      "destinatarios": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 9,
+    "fields": {
+      "titulo": "Equipamiento informático",
+      "descripcion": "Encuesta para valorar ordenadores, proyectores e internet.",
+      "fecha_creacion": "2026-05-09T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-07-10",
+      "destinatarios": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 10,
+    "fields": {
+      "titulo": "Comunicación del centro",
+      "descripcion": "Encuesta sobre avisos, correos y comunicación interna.",
+      "fecha_creacion": "2026-05-10T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-07-15",
+      "destinatarios": [
+        10,
+        11,
+        12,
+        13
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 11,
+    "fields": {
+      "titulo": "Seguridad y convivencia",
+      "descripcion": "Encuesta para valorar convivencia, seguridad y respeto.",
+      "fecha_creacion": "2026-05-11T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-07-20",
+      "destinatarios": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 12,
+    "fields": {
+      "titulo": "Limpieza del centro",
+      "descripcion": "Encuesta para valorar la limpieza de aulas y zonas comunes.",
+      "fecha_creacion": "2026-05-12T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-07-25",
+      "destinatarios": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 13,
+    "fields": {
+      "titulo": "Atención en secretaría",
+      "descripcion": "Encuesta sobre la atención recibida en secretaría.",
+      "fecha_creacion": "2026-05-13T09:00:00Z",
+      "estado": "borrador",
+      "fecha_cierre": "2026-08-01",
+      "destinatarios": [
+        13,
+        14,
+        15,
+        16
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 14,
+    "fields": {
+      "titulo": "Prácticas y orientación laboral",
+      "descripcion": "Encuesta para valorar prácticas y orientación laboral.",
+      "fecha_creacion": "2026-05-14T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-08-05",
+      "destinatarios": [
+        1,
+        2,
+        14,
+        15,
+        16
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 15,
+    "fields": {
+      "titulo": "Transporte y accesibilidad",
+      "descripcion": "Encuesta para valorar transporte, accesos y movilidad.",
+      "fecha_creacion": "2026-05-15T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-08-10",
+      "destinatarios": [
+        5,
+        9,
+        10,
+        11,
+        15
+      ]
+    }
+  },
+  {
+    "model": "encuestas.encuesta",
+    "pk": 16,
+    "fields": {
+      "titulo": "Encuesta antigua de prueba",
+      "descripcion": "Encuesta abierta con fecha pasada para probar cierre automático.",
+      "fecha_creacion": "2026-05-16T09:00:00Z",
+      "estado": "abierta",
+      "fecha_cierre": "2026-05-01",
+      "destinatarios": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 1,
+    "fields": {
+      "encuesta": 1,
+      "texto": "¿Cómo valoras la calidad de la comida?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 2,
+    "fields": {
+      "encuesta": 1,
+      "texto": "¿Qué mejorarías del comedor?",
+      "tipo_pregunta": "texto",
+      "obligatoriedad": false
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 3,
+    "fields": {
+      "encuesta": 2,
+      "texto": "¿Las aulas tienen suficiente espacio?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 4,
+    "fields": {
+      "encuesta": 2,
+      "texto": "Indica una mejora para las aulas.",
+      "tipo_pregunta": "texto",
+      "obligatoriedad": false
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 5,
+    "fields": {
+      "encuesta": 3,
+      "texto": "¿Te han parecido útiles las actividades?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 6,
+    "fields": {
+      "encuesta": 4,
+      "texto": "¿El horario actual te parece adecuado?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 7,
+    "fields": {
+      "encuesta": 5,
+      "texto": "¿Con qué frecuencia usas la biblioteca?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 8,
+    "fields": {
+      "encuesta": 8,
+      "texto": "Resume tu valoración general del curso.",
+      "tipo_pregunta": "texto",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 9,
+    "fields": {
+      "encuesta": 9,
+      "texto": "¿El equipamiento informático funciona correctamente?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 10,
+    "fields": {
+      "encuesta": 10,
+      "texto": "¿Recibes la información del centro a tiempo?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 11,
+    "fields": {
+      "encuesta": 11,
+      "texto": "¿Te sientes cómodo en el ambiente del centro?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 12,
+    "fields": {
+      "encuesta": 12,
+      "texto": "¿Cómo valoras la limpieza del centro?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 13,
+    "fields": {
+      "encuesta": 13,
+      "texto": "Explica cómo mejorarías la atención en secretaría.",
+      "tipo_pregunta": "texto",
+      "obligatoriedad": false
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 14,
+    "fields": {
+      "encuesta": 14,
+      "texto": "¿La orientación laboral te ha resultado útil?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 15,
+    "fields": {
+      "encuesta": 15,
+      "texto": "¿El acceso al centro te resulta cómodo?",
+      "tipo_pregunta": "multiple",
+      "obligatoriedad": true
+    }
+  },
+  {
+    "model": "encuestas.pregunta",
+    "pk": 16,
+    "fields": {
+      "encuesta": 16,
+      "texto": "Pregunta para probar cierre automático de encuesta.",
+      "tipo_pregunta": "texto",
+      "obligatoriedad": false
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 1,
+    "fields": {
+      "pregunta": 1,
+      "texto": "Muy buena"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 2,
+    "fields": {
+      "pregunta": 1,
+      "texto": "Buena"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 3,
+    "fields": {
+      "pregunta": 1,
+      "texto": "Regular"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 4,
+    "fields": {
+      "pregunta": 3,
+      "texto": "Sí"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 5,
+    "fields": {
+      "pregunta": 3,
+      "texto": "No"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 6,
+    "fields": {
+      "pregunta": 5,
+      "texto": "Sí, mucho"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 7,
+    "fields": {
+      "pregunta": 6,
+      "texto": "Sí"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 8,
+    "fields": {
+      "pregunta": 7,
+      "texto": "Varias veces por semana"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 9,
+    "fields": {
+      "pregunta": 9,
+      "texto": "Siempre funciona"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 10,
+    "fields": {
+      "pregunta": 9,
+      "texto": "A veces falla"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 11,
+    "fields": {
+      "pregunta": 10,
+      "texto": "Sí, siempre"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 12,
+    "fields": {
+      "pregunta": 10,
+      "texto": "No siempre"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 13,
+    "fields": {
+      "pregunta": 11,
+      "texto": "Sí, cómodo"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 14,
+    "fields": {
+      "pregunta": 11,
+      "texto": "No del todo"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 15,
+    "fields": {
+      "pregunta": 12,
+      "texto": "Muy limpia"
+    }
+  },
+  {
+    "model": "encuestas.opcion",
+    "pk": 16,
+    "fields": {
+      "pregunta": 14,
+      "texto": "Sí, bastante"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 1,
+    "fields": {
+      "usuario": 1,
+      "pregunta": 1,
+      "opcion": 1,
+      "contenido": "Muy buena",
+      "fecha_respuesta": "2026-05-20T10:00:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 2,
+    "fields": {
+      "usuario": 2,
+      "pregunta": 1,
+      "opcion": 2,
+      "contenido": "Buena",
+      "fecha_respuesta": "2026-05-20T10:05:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 3,
+    "fields": {
+      "usuario": 3,
+      "pregunta": 2,
+      "opcion": null,
+      "contenido": "Pondría más variedad de comida y más fruta.",
+      "fecha_respuesta": "2026-05-20T10:10:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 4,
+    "fields": {
+      "usuario": 4,
+      "pregunta": 3,
+      "opcion": 4,
+      "contenido": "Sí",
+      "fecha_respuesta": "2026-05-21T09:00:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 5,
+    "fields": {
+      "usuario": 5,
+      "pregunta": 4,
+      "opcion": null,
+      "contenido": "Añadiría más enchufes y mejor ventilación.",
+      "fecha_respuesta": "2026-05-21T09:10:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 6,
+    "fields": {
+      "usuario": 7,
+      "pregunta": 5,
+      "opcion": 6,
+      "contenido": "Sí, mucho",
+      "fecha_respuesta": "2026-05-22T11:00:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 7,
+    "fields": {
+      "usuario": 6,
+      "pregunta": 6,
+      "opcion": 7,
+      "contenido": "Sí",
+      "fecha_respuesta": "2026-05-23T12:00:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 8,
+    "fields": {
+      "usuario": 8,
+      "pregunta": 8,
+      "opcion": null,
+      "contenido": "El curso ha sido útil, aunque mejoraría la organización.",
+      "fecha_respuesta": "2026-05-24T13:00:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 9,
+    "fields": {
+      "usuario": 5,
+      "pregunta": 9,
+      "opcion": 9,
+      "contenido": "Siempre funciona",
+      "fecha_respuesta": "2026-05-25T09:15:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 10,
+    "fields": {
+      "usuario": 6,
+      "pregunta": 9,
+      "opcion": 10,
+      "contenido": "A veces falla",
+      "fecha_respuesta": "2026-05-25T09:20:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 11,
+    "fields": {
+      "usuario": 10,
+      "pregunta": 10,
+      "opcion": 11,
+      "contenido": "Sí, siempre",
+      "fecha_respuesta": "2026-05-26T10:00:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 12,
+    "fields": {
+      "usuario": 12,
+      "pregunta": 10,
+      "opcion": 12,
+      "contenido": "No siempre",
+      "fecha_respuesta": "2026-05-26T10:10:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 13,
+    "fields": {
+      "usuario": 11,
+      "pregunta": 11,
+      "opcion": 13,
+      "contenido": "Sí, cómodo",
+      "fecha_respuesta": "2026-05-27T11:00:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 14,
+    "fields": {
+      "usuario": 12,
+      "pregunta": 12,
+      "opcion": 15,
+      "contenido": "Muy limpia",
+      "fecha_respuesta": "2026-05-27T11:20:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 15,
+    "fields": {
+      "usuario": 14,
+      "pregunta": 13,
+      "opcion": null,
+      "contenido": "Pondría una ventanilla de atención con horarios más claros.",
+      "fecha_respuesta": "2026-05-28T12:00:00Z"
+    }
+  },
+  {
+    "model": "respuestas.respuesta",
+    "pk": 16,
+    "fields": {
+      "usuario": 16,
+      "pregunta": 16,
+      "opcion": null,
+      "contenido": "Esta respuesta sirve para probar una encuesta con fecha pasada.",
+      "fecha_respuesta": "2026-05-29T12:30:00Z"
+    }
+  }
+]
