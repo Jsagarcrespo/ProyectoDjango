@@ -4,14 +4,24 @@ from .models import Pregunta
 from .models import Opcion
 
 class EncuestaForm(forms.ModelForm):
-    
-    class Meta: 
 
+    class Meta:
         model = Encuesta
-        fields = ['titulo', 'descripcion','estado', 'fecha_cierre', 'destinatarios']
+        fields = [
+            'titulo',
+            'descripcion',
+            'estado',
+            'fecha_cierre',
+            'destinatarios'
+        ]
 
-    widgets = {
-            'fecha_cierre': forms.DateInput(attrs={'type': 'date'}),
+        widgets = {
+            'fecha_cierre': forms.DateInput(
+                attrs={
+                    'type': 'date'
+                },
+                format='%Y-%m-%d'
+            ),
             'destinatarios': forms.CheckboxSelectMultiple(),
         }
 

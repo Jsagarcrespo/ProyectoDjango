@@ -100,12 +100,15 @@ def crear_usuario(request):
         formulario = UsuarioForm(request.POST)
 
         if formulario.is_valid():
+            es_admin = formulario.cleaned_data['es_administrador']
+
             auth_user = User.objects.create_user(
                 username=formulario.cleaned_data['username'],
                 password=formulario.cleaned_data['password'],
                 email=formulario.cleaned_data['email'],
                 first_name=formulario.cleaned_data['nombre'],
-                last_name=formulario.cleaned_data['apellidos']
+                last_name=formulario.cleaned_data['apellidos'],
+                is_staff=es_admin
             )
 
             usuario = formulario.save(commit=False)
@@ -168,6 +171,7 @@ def editar_usuario(request, usuario_id):
                 auth_user.email = formulario.cleaned_data['email']
                 auth_user.first_name = formulario.cleaned_data['nombre']
                 auth_user.last_name = formulario.cleaned_data['apellidos']
+                auth_user.is_staff = formulario.cleaned_data['es_administrador']
 
                 if formulario.cleaned_data['password']:
                     auth_user.set_password(formulario.cleaned_data['password'])
@@ -181,7 +185,8 @@ def editar_usuario(request, usuario_id):
                     password=formulario.cleaned_data['password'],
                     email=formulario.cleaned_data['email'],
                     first_name=formulario.cleaned_data['nombre'],
-                    last_name=formulario.cleaned_data['apellidos']
+                    last_name=formulario.cleaned_data['apellidos'],
+                    is_staff=formulario.cleaned_data['es_administrador']
                 )
                 usuario_editado.auth_user = auth_user
 

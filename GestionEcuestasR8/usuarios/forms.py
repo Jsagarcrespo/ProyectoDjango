@@ -18,6 +18,12 @@ class UsuarioForm(forms.ModelForm):
         help_text='Al crear un usuario es obligatoria. Al editar, déjala vacía si no quieres cambiarla.'
     )
 
+    es_administrador = forms.BooleanField(
+    label='¿Es administrador?',
+    required=False,
+    help_text='Marca esta casilla si este usuario podrá gestionar encuestas, usuarios y respuestas.'
+)
+
     class Meta:
         model = Usuario
         fields = [
@@ -47,6 +53,7 @@ class UsuarioForm(forms.ModelForm):
         # Si estamos editando, permitimos mantener el mismo username del usuario actual.
         if self.instance and self.instance.pk and self.instance.auth_user:
             consulta = consulta.exclude(id=self.instance.auth_user.id)
+            self.fields['es_administrador'].initial = self.instance.auth_user.is_staff
 
         if consulta.exists():
             raise forms.ValidationError('Ya existe un usuario con ese nombre de login.')
